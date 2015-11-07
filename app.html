@@ -114,6 +114,15 @@
                     </ul>
 
                     <div id="user1_highlight" style="height:90%;" class="tab-content current">
+                        <input type="radio" name="user1display_mode" value="artist">Artist:
+                            <input type="text" id="user1_selection_artist"> <br/>
+                        <input type="radio" name="user1display_mode" value="artist">Genre:
+                            <select id="user1_selection_genre">
+                            </select><br/>
+                        <input type="radio" name="user1display_mode" value="artist">Decade:
+                            <select id="user1_selection_decade">
+                            </select><br/>
+                        <button id="user1_highlight_selection">Highlight Selection</button>
                     </div>
                     <div id="user1_artists" style="height:90%;" class="tab-content">
                         <div class="inline" style="height:100%;width:30%;">
@@ -122,7 +131,7 @@
                             <button id="user1_removeartist_button" style="height:8%">Remove</button>
                         </div>
                         <div style="height:100%;width:40%" class="inline">
-                            Name: <input type="textbox" style="width:60%" id="user1_artist_searchname"><br/>
+                            Name: <input type="text" style="width:60%" id="user1_artist_searchname"><br/>
                             Genre: <select id="user1_artist_searchgenre"></select> <br/>
                             Decade:<select id="user1_artist_searchdecade"></select> <br/>
                             <button id="user1_searchartist_button">Search</button> <br/>
@@ -157,6 +166,17 @@
             </div>
 
         <div id="shared" class="inline" style="height:95vh; width:50vw;">
+            <div id="timeline" style="width:100%;height:30%;">
+                Timeline
+            </div>
+            <div id="map" class="inline" style="width:50%;height:70%">
+                Map
+            </div>
+            <div id="fdg" class="inline" style="width:50%;height:70%">
+                Force Directed Graph
+            </div>
+
+
         </div>
         </div>
 	</body>
