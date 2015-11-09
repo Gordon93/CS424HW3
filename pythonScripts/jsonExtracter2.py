@@ -4,7 +4,7 @@ import json
 import csv
 import string
 
-fp = open('genre4.csv','w',newline='')
+fp = open('genre5.csv','w',newline='')
 writable = csv.writer(fp)
 
 url = 'http://developer.echonest.com/api/v4/genre/list?api_key=DLSWESE3XURBC96V4&format=json&start=800'

@@ -18,7 +18,7 @@ buckets = '&bucket=hotttnesss&bucket=artist_location&bucket=years_active&bucket=
 #content = response.read()
 #json_str = json.dumps(content)
 #data = json.loads(content.decode())
-headers = ["artist","genre","Start","End","Location","Hotttnesss","Discovery","Familiarity"]
+headers = ["artist","ID","genre","Location","Start","End","Hotttnesss","Discovery","Familiarity"]
 genre = []
 yearsActive = []
 locKey = 'artist_location'
@@ -48,21 +48,22 @@ def isAscii(word):
 
 
 
-reader = csv.reader(open('genres3.csv'))
-fp = open('output.csv','a',encoding='utf-8',newline='')
+reader = csv.reader(open('genres.csv'))
+fp = open('output.csv','w',encoding='utf-8',newline='')
 writable = csv.writer(fp)
 #open('output.txt','w',newline='')
 artistList = []
-#artistList.append(headers)
+artistList.append(headers)
 debug = True
 count = 0
 for genre in reader:
-    if count == 5:
+    if count == 10:
         count = 0
         print("Going to sleep for 60 secs")
         time.sleep(60)
 
     genreName = genre[0]
+    #genreName = "pop"
     style = spaces(genreName)
     #print(style)
     genreLIstUrl = listUrl+"style="+style+buckets
@@ -85,6 +86,7 @@ for genre in reader:
                         #if isAscii(artist[nameKey])==True:
                             name = artist[nameKey]
                             artistData.append(artist[nameKey])
+                            artistData.append(artist['id'])
                             artistData.append(genreName)
                             if locKey in artist:
                                 #print(artist['artist_location'])
@@ -133,7 +135,7 @@ for genre in reader:
 
             startR = startR + 100
 
-            if count == 5:
+            if count == 10:
                 count = 0
                 print("sleep for 60 secs")
                 time.sleep(60)
