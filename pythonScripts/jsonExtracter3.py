@@ -53,7 +53,7 @@ for artist in reader:
         #debug = False
         print("Going to sleep for 60 secs")
         time.sleep(60)
-    url = top100Url+id+artist[2]
+    url = top100Url+id+artist[3]
 
     if debug==True:
         print(url)
@@ -62,13 +62,13 @@ for artist in reader:
             count = count +1
             content = response.read()
             data = json.loads(content.decode('utf-8'))
-            for artist in data ['response']['artists']:
+            for comp in data ['response']['artists']:
                 #print("here")
                 artistData = []
                 #if isAscii(artist[nameKey])==True:
-                artistData.append(artist[artist[2]])
-                artistData.append(artist[IDKey])
-                artistData.append(artist[famKey])
+                artistData.append(artist[3])
+                artistData.append(comp[IDKey])
+                artistData.append(comp[famKey])
                 #artistData.append(artist['genres'])
                 #print(artistData)
                 top100List.append(artistData)
@@ -83,16 +83,16 @@ for artist in reader:
 
         if count == 10:
             count = 0
-            debug = False
+            #debug = False
             print("sleep for 60 secs")
-            #time.sleep(60)
+            time.sleep(60)
 
-    year = year+10
+
     for top100 in top100List:
         writable.writerow(top100)
 
     fp.close()
     fp = open('output2.csv',mode='a',encoding='utf-8',newline='')
     writable = csv.writer(fp)
-    top10List = []
+    top100List = []
 
