@@ -8,27 +8,18 @@ import sys
 
 
 
-top10Url = 'http://developer.echonest.com/api/v4/artist/search?api_key=DLSWESE3XURBC96V4&format=json&sort=hotttnesss-desc&bucket=hotttnesss&bucket=genre&results=10&'
-endUrl = 'artist_start_year_before='
-startUrl   = 'artist_start_year_after='
-
-
+top100Url = 'http://developer.echonest.com/api/v4/artist/similar?api_key=DLSWESE3XURBC96V4&format=json&results=1&start=0&max_familiarity=1&bucket=familiarity'
+id = '&id='
 
 #response = urllib.request.urlopen(genreUrl)
 #content = response.read()
 #json_str = json.dumps(content)
 #data = json.loads(content.decode())
-headers = ["DecadeStart","DecadeEnd","Name","Location","Start","End","Hotttnesss","Discovery","Familiarity"]
+headers = ["ID1","ID2","Strength"]
 genre = []
-yearsActive = []
-locKey = 'artist_location'
-rlocKey = 'location'
-
-nameKey = 'name'
-hotKey = 'hotttnesss'
-actKey = 'years_active'
+IDKey = 'id'
 famKey = 'familiarity'
-disKey = 'discovery'
+
 
 
 def spaces(genre):
@@ -48,23 +39,21 @@ def isAscii(word):
 
 
 
-
+reader = csv.reader(open('top10perdecade.csv'))
 fp = open('output2.csv','w',encoding='utf-8',newline='')
 writable = csv.writer(fp)
 #open('output.txt','w',newline='')
-top10List = []
+top100List = []
 #artistList.append(headers)
 debug = True
 count = 0
-year = 1899
-while(year<=2010):
-    print(str(year))
-    if count == 5:
+for artist in reader:
+    if count == 10:
         count = 0
         #debug = False
         print("Going to sleep for 60 secs")
         time.sleep(60)
-    url = top10Url+startUrl+str(year)+'&'+endUrl+str(year+11)
+    url = top100Url+id+artist[2]
 
     if debug==True:
         print(url)
@@ -76,20 +65,13 @@ while(year<=2010):
             for artist in data ['response']['artists']:
                 #print("here")
                 artistData = []
-                if nameKey in artist:
-                    #if isAscii(artist[nameKey])==True:
-                    name = artist[nameKey]
-                    artistData.append(str(year))
-                    artistData.append(str(year+11))
-                    artistData.append(artist[nameKey])
-                    artistData.append(artist['id'])
-                    #artistData.append(artist['genres'])
-                    if hotKey in artist:
-                        artistData.append(artist[hotKey])
-                    else:
-                        artistData.append(0)
-                    #print(artistData)
-                    top10List.append(artistData)
+                #if isAscii(artist[nameKey])==True:
+                artistData.append(artist[artist[2]])
+                artistData.append(artist[IDKey])
+                artistData.append(artist[famKey])
+                #artistData.append(artist['genres'])
+                #print(artistData)
+                top100List.append(artistData)
         except urllib.error.HTTPError as e:
             print(e.code)
             print(e.read())
@@ -99,15 +81,15 @@ while(year<=2010):
 
 
 
-        if count == 5:
+        if count == 10:
             count = 0
-            #debug = False
+            debug = False
             print("sleep for 60 secs")
-            time.sleep(60)
+            #time.sleep(60)
 
     year = year+10
-    for top10 in top10List:
-        writable.writerow(top10)
+    for top100 in top100List:
+        writable.writerow(top100)
 
     fp.close()
     fp = open('output2.csv',mode='a',encoding='utf-8',newline='')
