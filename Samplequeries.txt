@@ -1,0 +1,11 @@
+						Sample SQL queries 
+
+// produces the number of artists belonging to each
+// genre in the 1920’s
+
+select COUNT(*), Genre from artists where Year BETWEEN 1920 AND 1930 GROUP BY Genre order by COUNT(*);
+
+// Producing the edges give an artist ID
+
+select ArtistID2,Strength from Connections where ArtistID = ‘AR6XZ861187FB4CECD';
+
