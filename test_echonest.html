@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<!-- 
+    README: Look at console output to see the data that was retrieved by echonest library.
+-->
+
+<head>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/d3/d3.js"></script>
+    <script src="lib/echonest/echonest.js"></script>
+	<script>
+        function genTable(d) {
+            console.log("Data retrieved from echonest.Artist.topArtistsPerDecade:");
+            console.log(d);
+            
+            var str = "<table border='1px solid black'>";
+            str += "<tr>" + d.map(function (d) { return "<td>" + d.startYear + "</td>"}).join("") + "</tr>";
+            for (var row in d3.range(10)) {
+                str += "<tr>";
+                for (var col in d3.range(d.length))
+                    str += "<td>" + d[col].artists[row].name + "</td>";
+                str += "</tr>";
+            }
+            str += "</table>";
+            $("#output").html(str);
+        }
+        
+        function fetch() {
+            echonest.Artist.topArtistsPerDecade(10, 1970, 2015, genTable);  
+        }
+	</script>
+</head>
+
+<body>
+    <h1>Top Ten Artists</h1>
+	<pre>Demonstration of echonest.Artist.topArtistsPerDecade() method. 
+See console for structure of data retrieved. 
+	</pre>
+    <button onclick="fetch()">Fetch Output</button>
+    <div id="output"></div>
+</body>
