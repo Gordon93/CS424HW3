@@ -1,0 +1,75 @@
+        <!DOCTYPE html>
+
+        <style type="text/css">
+
+        .map div { 
+
+          height: 800px; 
+          width: 500px;
+          font: 10px sans-serif;
+          background-color: blue;
+          text-align: right;
+          padding: 3px;
+          margin: 1px;
+          color: white;
+
+        }
+
+        </style>
+        <html>
+          <head>
+            <title> D3 page template </title>     
+               <div id = top style = "width: 100vh; height: 90vh;" >
+            <div id = "map" style = "height: 50%;"></div>
+            <div id = "legend" style = "height: 50% ; "></div>
+             </div>
+
+
+            <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"
+            ></script> 
+              <head><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+               <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+              </head>
+              <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+
+          </head>
+          <body>
+            <script type="text/javascript">   
+
+var map = L.map('map').setView([41.83, -100], 3);
+
+                // creating a map
+
+                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                    attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
+                    maxZoom: 18,
+                    noWrap: true,
+                    id: 'ygordon22.cifd9ql4c53tbsmlx7cegx4iy',
+                    accessToken: 'pk.eyJ1IjoieWdvcmRvbjIyIiwiYSI6ImNpZmQ5cW1idzUzeWFzNG03bjVqc3czZWEifQ.dpecRLb3F4lRAOvIVd5KpQ'
+                }).addTo(map); 
+  
+var location1;
+var city ='Chicago';
+                
+function draw(){
+var marker = L.marker(location1["features"][1]["center"].reverse()).addTo(map);
+marker.bindPopup("welcome to " + city);
+function onMapClick(e) {
+e.openPopup();
+ }
+    map.on('click', onMapClick);
+}
+
+                
+function GetResults() {   $.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/"+city +".json?types=place,address&access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q", function(json) {
+    location1=json;
+    draw();
+   });
+     }
+    
+    GetResults();
+                
+              </script>
+            </body>
+</html>
