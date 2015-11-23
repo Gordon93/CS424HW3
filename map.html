@@ -35,6 +35,8 @@
 
           </head>
           <body>
+              <a href="link" class="dynamicLink">Link</a>
+              
             <script type="text/javascript">   
 
 var map = L.map('map').setView([41.83, -100], 3);
@@ -48,27 +50,47 @@ var map = L.map('map').setView([41.83, -100], 3);
                     id: 'ygordon22.cifd9ql4c53tbsmlx7cegx4iy',
                     accessToken: 'pk.eyJ1IjoieWdvcmRvbjIyIiwiYSI6ImNpZmQ5cW1idzUzeWFzNG03bjVqc3czZWEifQ.dpecRLb3F4lRAOvIVd5KpQ'
                 }).addTo(map); 
-  
-var location1;
-var city ='Chicago';
                 
-function draw(){
-var marker = L.marker(location1["features"][1]["center"].reverse()).addTo(map);
-marker.bindPopup("welcome to " + city);
+    var cities =[]            
+  function getJson(){
+    $.getJSON( "data/top100.json", function( data ) {
+   // now you can read the data
+        for (var i=0; i<data.length; i++){
+            for (var j=0; j< data[i]["artists"].length;j++){
+            var mycity = data[i]["artists"][j]["artist_location"]["city"]
+            cities.push(mycity)
+        }
+}
+        init();
+});
+  }
+                
+                
+function draw(location,i){
+    alert(JSON.stringify(location));
+var marker = L.marker(location["features"][1]["center"].reverse()).addTo(map);
+var mycity = "London";
+var mylink = "https://en.wikipedia.org/wiki/"+mycity;
+marker.bindPopup("<a href= '" + mylink + "' >linking</a>");
 function onMapClick(e) {
 e.openPopup();
  }
     map.on('click', onMapClick);
 }
-
                 
-function GetResults() {   $.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/"+city +".json?types=place,address&access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q", function(json) {
-    location1=json;
-    draw();
+function GetResults(city,i) {   $.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/"+city +".json?types=place,address&access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q", function(json) {
+    draw(json,i);
    });
      }
     
-    GetResults();
+    function init(){            
+    for(var i=0;i<cities.length;i++){
+        alert(cities[i]);
+        GetResults(cities[i],i);
+    }
+    }
+                
+                getJson();
                 
               </script>
             </body>
