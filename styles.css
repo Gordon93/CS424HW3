@@ -134,3 +134,11 @@ ul.tabs li.current{
 .tab-content.current{
     display: inherit;
 }
+
+input[type="checkbox"]{
+    width: 1vw; /*Desired width*/
+    height: 1.2vw; /*Desired height*/
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}

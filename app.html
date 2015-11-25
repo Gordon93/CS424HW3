@@ -95,7 +95,7 @@
             </script>
 
 
-            <div id="user1panel" class="inline" style="height:95vh; width:16vw;">
+            <div id="user1panel" class="inline" style="height:95vh; width:16vw;font-size:1vw;">
                 <div id="user1info" style="height:40%;">
                     <fieldset id="user1_artistlist" style="width:50%;overflow:auto;">
                         <legend style="font-size:12px;font-size:1vw; overflow:auto">Artists</legend>
@@ -114,52 +114,52 @@
                     </ul>
 
                     <div id="user1_highlight" style="height:90%;" class="tab-content current">
-                        <input type="checkbox" name="user1display_artist" value="artist">Artist:
-                            <input type="text" id="user1_selection_artist"> <br/>
-                        <input type="checkbox" name="user1display_genre" value="artist">Genre:
-                            <select id="user1_selection_genre">
+                        <input type="checkbox" name="user1_selection_checkbox_artist" value="artist">Artist:
+                            <input type="text" id="user1_selection_textbox_artist"> <br/>
+                        <input type="checkbox" name="user1_selection_checkbox_genre" value="artist">Genre:
+                            <select id="user1_selection_genrelist">
                             </select><br/>
-                        <input type="checkbox" name="user1display_decade" value="artist">Decade:
-                            <select id="user1_selection_decade">
+                        <input type="checkbox" name="user1_selection_checkbox_decade" value="artist">Decade:
+                            <select id="user1_selection_decadelist">
                             </select><br/>
-                        <button id="user1_highlight_selection">Highlight Selection</button>
+                        <button id="user1_selection_button" style="width:8vw;height:4vh;font-size:.6vw">Highlight Selection</button>
                     </div>
                     <div id="user1_artists" style="height:90%;" class="tab-content">
                         <div class="inline" style="height:100%;width:30%;">
-                            <select multiple id="user1_selectartistlist" style="height:90%;">
+                            <select multiple id="user1_artist_artistlist" style="height:90%;">
                             </select> <br/>
-                            <button id="user1_removeartist_button" style="height:8%">Remove</button>
+                            <button id="user1_artist_button_removeartist" style="width:6vw;height:4vh;">Remove</button>
                         </div>
                         <div style="height:100%;width:40%" class="inline">
-                            Name: <input type="text" style="width:60%" id="user1_artist_searchname"><br/>
-                            Genre: <select id="user1_artist_searchgenre"></select> <br/>
-                            Decade:<select id="user1_artist_searchdecade"></select> <br/>
-                            <button id="user1_searchartist_button">Search</button> <br/>
-                            <select multiple id="user1_selectartist" style="height:40%;">
+                            Name: <input type="text" style="width:60%" id="user1_artist_textbox_artistsearch"><br/>
+                            Genre: <select id="user1_artist_selection_genre"></select> <br/>
+                            Decade:<select id="user1_artist_selection_decade"></select> <br/>
+                            <button id="user1_artist_button_searchartist" style="widht:6vw;height:4vh;">Search</button> <br/>
+                            <select multiple id="user1_artist_searchresults" style="height:40%;">
                             </select> <br/>
-                            <button id="user1_addartist_button">Add</button> <br/>
+                            <button id="user1_artist_button_addartist" style="width:5vw;height:4vh;">Add</button> <br/>
                         </div>
                         <div class="inline" style="height:100%; width:30%;">
-                            Related Artists
-                            <select multiple id="user1_relatedartists" style="height:80%;">
+                            Related Artists <br/>
+                            <select multiple id="user1_artist_relatedartists" style="height:80%;">
                             </select> <br/>
                         </div>
                     </div>
 
                     <div id="user1_genres" style="height:90%;" class="tab-content">
                         <div class="inline" style="height:100%;width:40%;">
-                            <select multiple id="user1_selectgenrelist" style="height:90%;">
+                            <select multiple id="user1_genre_selection_genrelist" style="height:90%;">
                             </select> <br/>
-                            <button id="user1_removegenre_button" style="height:8%">Remove</button>
+                            <button id="user1_genre_button_removegenre" style="width:6vw;height:4vh;">Remove</button>
                         </div>
                         <div style="height:100%;width:60%" class="inline">
-                            Name: <input type="textbox" style="width:60%" id="user1_genre_searchname"><br/>
-                            Decade:<select id="user1_genre_searchdecade"></select> <br/>
-                            Sort by: <select id="user1_genre_sort"></select> <br/>
-                            <button id="user1_searchgenre_button">Search</button> <br/>
-                            <select multiple id="user1_selectgenre" style="height:50%;">
+                            Name: <input type="textbox" style="width:60%" id="user1_genre_artistsearch"><br/>
+                            Decade:<select id="user1_genre_selection_decade"></select> <br/>
+                            Sort by: <select id="user1_genre_selection_sort"></select> <br/>
+                            <button id="user1_genre_button_searchgenre" style="width:6vw;height:4vh;">Search</button> <br/>
+                            <select multiple id="user1_genre_selection_genre" style="height:50%;">
                             </select> <br/>
-                            <button id="user1_addgenre_button">Add</button> <br/>
+                            <button id="user1_genre_button_addgenre" style="width:5vw;height:4vh;">Add</button> <br/>
                         </div>
                     </div>
                 </div>
