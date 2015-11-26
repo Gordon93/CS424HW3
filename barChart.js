@@ -1,17 +1,16 @@
 /**
  * Created by Ryan on 11/24/2015.
  */
-var x, y, xAxis,yAxis,
+var x, y1,y0,xAxis,yAxis,
     graph1,bar1,margin,height,width;
 
 
 var color1 = d3.scale.category20();
+var parseDate = d3.time.format("%y");
 
-//parse the date
-var format = d3.time.format("%y");
 
 var color = d3.scale.ordinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+    .range(["#313695","#4575b4","#74add1","#abd9e9", "#e0f3f8", "#fee090", "#fdae61", "#f46d43", "#d73027","#a50026"]);
 
 
 var top10Genres = [];
@@ -26,25 +25,27 @@ d3.csv('pythonScripts/top10GenrePerDecade.csv',function(error,data){
 
 
 
-
+    var group = 1;
     data.forEach(function(d) {
-        d.START = parseInt(d.START)
-        d.END = parseInt(d.END);
+        d.GROUP = group;
+        d.GENRE = d.GENRE;
+        d.START = +d.START;
+        d.END = +d.END;
         d.HOT = parseFloat(d.HOT);
         d.NUMGENRE = parseInt(d.NUMGENRE);
-        d.NUMARTIST = parseInt(d.NUMARTIST);
+        d.NUMARTIST = +d.NUMARTIST;
+
+        if(group==10)
+            group=1;
+        else
+            group++;
+
 
     });
-
-    dataSet = d3.nest()
-        .key(function(d) {
-            return d.START;})
-        .entries(data)
-
-    console.log(dataSet);
+    console.log(data);
 
     //load data to global variable usaData
-    top10Genres = dataSet;
+    top10Genres = data;
 
     createbar();
     barInit(top10Genres,graphs[0].bar);
@@ -63,10 +64,16 @@ function createbar() {
 
     //set the dimensions of the canvas/graph
     margin = {top: 30, right: 20, bottom: 30, left: 50},
-        width = parseInt(d3.select('#bar').style('width'),10),
+        width = parseInt(d3.select('#chartContainer').style('width'),10),
         width = (width - margin.left - margin.right),
-        height = ((window.innerHeight) *.30)-margin.bottom - margin.top;
+        height = ((window.innerHeight) *.60)-margin.bottom - margin.top;
+
+    /*margin = {top: 10, right: 20, bottom: 20, left: 60},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;*/
+
     console.log(width);
+    console.log(height);
     //height = 270 - margin.top - margin.bottom;
 
     // console.log(height);
@@ -84,30 +91,47 @@ function createbar() {
 
 
 function barInit(top10,graph) {
-    var tickF;
-    x = d3.scale.ordinal().rangeRoundBands([0, width],.3);
-    y = d3.scale.linear().range([height, 0]);
+    var parseDate = d3.time.format("%y");
+
+    x = d3.scale.ordinal().rangeRoundBands([0, width],.1,0);
+    y0 = d3.scale.ordinal().rangeRoundBands([height,0],.2);
+    y1 = d3.scale.linear();
 
 
 
-    if(width< 400)
-        tickF = d3.time.format("%y");
-    else
-        tickF = d3.time.format("%Y");
+
+
 
     //places the x axis at the bottom of the graph
     xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom").ticks(5)
-        .tickFormat(tickF);
+        .orient("bottom").ticks(5);
+        //.tickFormat(parseDate);
 
     yAxis = d3.svg.axis()
-        .scale(y)
+        .scale(y0)
         .orient("left");
 
 
+    var nest = d3.nest()
+        .key(function(d){return d.GROUP;});
 
-    var top10PerYear = [];
+    var stack = d3.layout.stack()
+        .values(function(d){return d.values; })
+        .x(function (d){return d.START;})
+        .y(function(d){return d.NUMARTIST;})
+        .out(function(d,y0){d.valueOffset = y0;});
+
+   // var color = d3.scale.category10();
+
+    var dataByDecade = nest.entries(top10)
+    console.log(dataByDecade);
+        stack(dataByDecade);
+    console.log(dataByDecade);
+    //console.log(layers);
+
+
+
     //console.log(HurrData);
 
 
@@ -128,64 +152,72 @@ function barInit(top10,graph) {
 
      //console.log(d);
      });*/
-   color.domain(d3.keys(top10[0]).filter(function(key){
-        console.log(key);
-        return key=="NUMARTIST"}))
-    console.log(color);
-    top10.forEach(function(d){
-      var y0 = 0;
 
 
+    x.domain(dataByDecade[0].values.map(function(d) {return d.START; }));
+    y0.domain(dataByDecade.map(function(d){return d.key; }));
+    y1.domain([0,d3.max(top10,function(d){return d.NUMARTIST;})]).range([y0.rangeBand(),0]);
 
-    });
-    console.log("here1");
-
-    x.domain(top10.map(function(d) {return parseInt(d.key); }));
-
-    y.domain([0, d3.max(top10,function(d){
-        d.values.forEach(function(d){return d.NUMARTIST;})
-        })]);
 
     graph.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + (height-10) + ")")
         .call(xAxis)
         .selectAll("text")
         .style("text-anchor", "start")
-        .style("font-size","1vh")
+        //.attr("font-size","12px")
         //.attr("y",0)
         .attr("x",-15);
     //.attr("dy", ".35em");
     //.attr("transform", "rotate(90)" )*/;
-    graph.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-        .append("text")
-        .style("font-size","1vv")
-        .attr("transform", "rotate(-90)")
-        .attr("y",6)
-        .attr("dy", ".71em")
-        .style("text-anchor","end");
-    var year = svg.selectAll(".year")
-        .data(top10)
+    var decade = graph.selectAll(".decade")
+        .data(dataByDecade)
         .enter().append("g")
         .attr("class","g")
-        .attr("transform",function(d){return "translate("+x(d.START)+",0)";});
+        .attr("transform","translate(0,"+ y0(y0.domain()[0])+")");
 
-    year.selectAll("bar")
-        .data(function(d){return d.NUMARTIST})
+    decade.append("text")
+        .attr("x",-6)
+        .attr("y",function(d){return y1(d.values[0].NUMARTIST/2 + d.values[0].valueOffset);})
+        .attr("dy",".35em");
+
+    decade.selectAll("bar")
+        .data(function(d){return d.values;})
         .enter().append("rect")
+        .style("fill",function(d){return color(d.GROUP);})
+        .attr("x",function(d){return x(d.START)})
+        .attr("y",function(d){return y1(d.NUMARTIST + d.valueOffset);})
         .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.perYear); })
-        .attr("height", function(d) { return height - y(d.perYear); })
-        .style("fill",  function (d) {
-            return color1(d.GENRE);});
-    graph.append("text")
-        .attr("x",(width/2))
-        .attr("y",10-(margin.top/2))
-        .attr("text-anchor","middle")
-        .style("font-size","2vh")
-        .text("By Year");
+        .attr("height", function(d) { return y0.rangeBand() - y1(d.NUMARTIST); })
+        .on("mouseover",function(d){showPopover.call(this,d);})
+        .on("mouseout",function(d){removePopovers();});
+
+    /*decade.filter(function(d,i){return !i;}).append("g")
+        .attr("class","x axis")
+        .attr("transfomrm","translate(0,"+ y0.rangeBand()+")")
+        .call(xAxis);*/
+
 
 }
 
+function removePopovers(){
+    $('.popover').each(function(){
+        $(this).remove();
+    })
+}
+
+function showPopover(d){
+    $(this).popover({
+        Genre: d.GENRE,
+        placement:'auto top',
+        container: 'body',
+        trigger: 'manual',
+        html:true,
+        content:function(){
+            return "GENRE:"+ d.GENRE+
+                "<br/>Decade:"+ d.START +"-"+ d.END+
+                "<br/>HOTTTNESS:"+ d.HOT +
+                    "<br/>#Artist:"+d.NUMARTIST;}
+    });
+    $(this).popover('show')
+}

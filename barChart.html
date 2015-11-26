@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link href="bootstrap.css" rel="stylesheet">
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="bootstrap.js"></script>
     <script src="barChart.js"></script>
 </head>
 <style>
@@ -22,10 +25,17 @@
 
     }
 
+    form{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+    }
+
 
 </style>
 <body>
-<div id="chartContainer" class="inline" style="width:15vw">
+<div id="chartContainer" >
     <div id="bar"></div>
 </div>
 
