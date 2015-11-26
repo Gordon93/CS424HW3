@@ -63,10 +63,10 @@ d3.csv('pythonScripts/top10GenrePerDecade.csv',function(error,data){
 function createbar() {
 
     //set the dimensions of the canvas/graph
-    margin = {top: 30, right: 20, bottom: 30, left: 50},
+    margin = {top: 10, right: 20, bottom: 30, left: 50},
         width = parseInt(d3.select('#chartContainer').style('width'),10),
         width = (width - margin.left - margin.right),
-        height = ((window.innerHeight) *.60)-margin.bottom - margin.top;
+        height = parseInt(d3.select('#chartContainer').style('height'),10)-margin.bottom - margin.top;
 
     /*margin = {top: 10, right: 20, bottom: 20, left: 60},
         width = 960 - margin.left - margin.right,
@@ -79,11 +79,13 @@ function createbar() {
     // console.log(height);
 
     bar1 = d3.select("#bar").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        /*.attr("width", width + margin.left + margin.right)*/
+        /*.attr("height", height + margin.top + margin.bottom)*/
+        .attr("preserveAspectRatio", "xMidYMid meet")
+        .attr("viewBox", "0 0 1050 200")
+        .classed("svg-content-responsive", true)
         .append("g")
-        .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
     graphs.push({bar:bar1});
 
@@ -161,7 +163,7 @@ function barInit(top10,graph) {
 
     graph.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + (height-10) + ")")
+        .attr("transform", "translate(0," + (height) + ")")
         .call(xAxis)
         .selectAll("text")
         .style("text-anchor", "start")

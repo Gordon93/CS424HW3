@@ -108,6 +108,13 @@ div
     border-width: 1px;
 }
 
+form{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+}
+
 ul.tabs{
     margin: 0px;
     padding: 0px;
