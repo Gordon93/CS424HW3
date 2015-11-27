@@ -1,0 +1,754 @@
+[
+    {
+        "genre": "qawwali",
+        "count": 1
+    },
+    {
+        "genre": "liquid funk",
+        "count": 1
+    },
+    {
+        "genre": "dark hardcore",
+        "count": 1
+    },
+    {
+        "genre": "rock en espanol",
+        "count": 1
+    },
+    {
+        "genre": "serialism",
+        "count": 1
+    },
+    {
+        "genre": "cantautor",
+        "count": 1
+    },
+    {
+        "genre": "canadian pop",
+        "count": 1
+    },
+    {
+        "genre": "minimal dub",
+        "count": 1
+    },
+    {
+        "genre": "talent show",
+        "count": 1
+    },
+    {
+        "genre": "moombahton",
+        "count": 1
+    },
+    {
+        "genre": "hip pop",
+        "count": 1
+    },
+    {
+        "genre": "pop house",
+        "count": 1
+    },
+    {
+        "genre": "disco house",
+        "count": 1
+    },
+    {
+        "genre": "deep euro house",
+        "count": 1
+    },
+    {
+        "genre": "metropopolis",
+        "count": 1
+    },
+    {
+        "genre": "alternative rock",
+        "count": 1
+    },
+    {
+        "genre": "indie christmas",
+        "count": 1
+    },
+    {
+        "genre": "new wave",
+        "count": 1
+    },
+    {
+        "genre": "uplifting trance",
+        "count": 1
+    },
+    {
+        "genre": "trance",
+        "count": 1
+    },
+    {
+        "genre": "progressive trance",
+        "count": 1
+    },
+    {
+        "genre": "norwegian hip hop",
+        "count": 1
+    },
+    {
+        "genre": "dance rock",
+        "count": 1
+    },
+    {
+        "genre": "new romantic",
+        "count": 1
+    },
+    {
+        "genre": "glam metal",
+        "count": 1
+    },
+    {
+        "genre": "speed metal",
+        "count": 1
+    },
+    {
+        "genre": "nwobhm",
+        "count": 1
+    },
+    {
+        "genre": "lo-fi",
+        "count": 1
+    },
+    {
+        "genre": "dixieland",
+        "count": 1
+    },
+    {
+        "genre": "r&b",
+        "count": 1
+    },
+    {
+        "genre": "latin hip hop",
+        "count": 1
+    },
+    {
+        "genre": "tango",
+        "count": 1
+    },
+    {
+        "genre": "urban contemporary",
+        "count": 1
+    },
+    {
+        "genre": "gospel blues",
+        "count": 1
+    },
+    {
+        "genre": "christian christmas",
+        "count": 1
+    },
+    {
+        "genre": "classical piano",
+        "count": 1
+    },
+    {
+        "genre": "choro",
+        "count": 1
+    },
+    {
+        "genre": "indie rock",
+        "count": 1
+    },
+    {
+        "genre": "brazilian composition",
+        "count": 1
+    },
+    {
+        "genre": "velha guarda",
+        "count": 1
+    },
+    {
+        "genre": "forro",
+        "count": 1
+    },
+    {
+        "genre": "bossa nova",
+        "count": 1
+    },
+    {
+        "genre": "anti-folk",
+        "count": 1
+    },
+    {
+        "genre": "psychedelic rock",
+        "count": 1
+    },
+    {
+        "genre": "gypsy jazz",
+        "count": 1
+    },
+    {
+        "genre": "reggaeton",
+        "count": 1
+    },
+    {
+        "genre": "symphonic rock",
+        "count": 1
+    },
+    {
+        "genre": "progressive rock",
+        "count": 1
+    },
+    {
+        "genre": "protopunk",
+        "count": 1
+    },
+    {
+        "genre": "juggalo",
+        "count": 1
+    },
+    {
+        "genre": "merseybeat",
+        "count": 1
+    },
+    {
+        "genre": "chicano rap",
+        "count": 1
+    },
+    {
+        "genre": "indian classical",
+        "count": 1
+    },
+    {
+        "genre": "hindustani classical",
+        "count": 1
+    },
+    {
+        "genre": "australian country",
+        "count": 1
+    },
+    {
+        "genre": "hardcore hip hop",
+        "count": 1
+    },
+    {
+        "genre": "disco",
+        "count": 1
+    },
+    {
+        "genre": "country",
+        "count": 1
+    },
+    {
+        "genre": "chanson",
+        "count": 1
+    },
+    {
+        "genre": "contemporary country",
+        "count": 1
+    },
+    {
+        "genre": "new age",
+        "count": 1
+    },
+    {
+        "genre": "celtic christmas",
+        "count": 1
+    },
+    {
+        "genre": "celtic",
+        "count": 1
+    },
+    {
+        "genre": "viral pop",
+        "count": 1
+    },
+    {
+        "genre": "jazz fusion",
+        "count": 1
+    },
+    {
+        "genre": "soul blues",
+        "count": 1
+    },
+    {
+        "genre": "alternative dance",
+        "count": 1
+    },
+    {
+        "genre": "new rave",
+        "count": 1
+    },
+    {
+        "genre": "new orleans blues",
+        "count": 1
+    },
+    {
+        "genre": "swamp pop",
+        "count": 1
+    },
+    {
+        "genre": "boogie-woogie",
+        "count": 1
+    },
+    {
+        "genre": "funk rock",
+        "count": 1
+    },
+    {
+        "genre": "classic funk rock",
+        "count": 1
+    },
+    {
+        "genre": "quiet storm",
+        "count": 1
+    },
+    {
+        "genre": "funk",
+        "count": 1
+    },
+    {
+        "genre": "latin alternative",
+        "count": 1
+    },
+    {
+        "genre": "motown",
+        "count": 2
+    },
+    {
+        "genre": "soul",
+        "count": 2
+    },
+    {
+        "genre": "indietronica",
+        "count": 2
+    },
+    {
+        "genre": "minimal",
+        "count": 2
+    },
+    {
+        "genre": "contemporary post-bop",
+        "count": 2
+    },
+    {
+        "genre": "world christmas",
+        "count": 2
+    },
+    {
+        "genre": "country christmas",
+        "count": 2
+    },
+    {
+        "genre": "honky tonk",
+        "count": 2
+    },
+    {
+        "genre": "folk-pop",
+        "count": 2
+    },
+    {
+        "genre": "australian dance",
+        "count": 2
+    },
+    {
+        "genre": "traditional country",
+        "count": 2
+    },
+    {
+        "genre": "british invasion",
+        "count": 2
+    },
+    {
+        "genre": "british blues",
+        "count": 2
+    },
+    {
+        "genre": "australian pop",
+        "count": 2
+    },
+    {
+        "genre": "mariachi",
+        "count": 2
+    },
+    {
+        "genre": "norteno",
+        "count": 2
+    },
+    {
+        "genre": "ranchera",
+        "count": 2
+    },
+    {
+        "genre": "art rock",
+        "count": 2
+    },
+    {
+        "genre": "grupera",
+        "count": 2
+    },
+    {
+        "genre": "banda",
+        "count": 2
+    },
+    {
+        "genre": "regional mexican",
+        "count": 2
+    },
+    {
+        "genre": "brazilian pop music",
+        "count": 2
+    },
+    {
+        "genre": "west coast rap",
+        "count": 2
+    },
+    {
+        "genre": "mpb",
+        "count": 2
+    },
+    {
+        "genre": "samba",
+        "count": 2
+    },
+    {
+        "genre": "brill building pop",
+        "count": 2
+    },
+    {
+        "genre": "jump blues",
+        "count": 2
+    },
+    {
+        "genre": "pop rock",
+        "count": 2
+    },
+    {
+        "genre": "heavy christmas",
+        "count": 2
+    },
+    {
+        "genre": "boy band",
+        "count": 2
+    },
+    {
+        "genre": "g funk",
+        "count": 2
+    },
+    {
+        "genre": "tropical",
+        "count": 2
+    },
+    {
+        "genre": "metal",
+        "count": 2
+    },
+    {
+        "genre": "texas blues",
+        "count": 2
+    },
+    {
+        "genre": "rap",
+        "count": 2
+    },
+    {
+        "genre": "gangster rap",
+        "count": 2
+    },
+    {
+        "genre": "latin christmas",
+        "count": 2
+    },
+    {
+        "genre": "big room",
+        "count": 2
+    },
+    {
+        "genre": "progressive electro house",
+        "count": 2
+    },
+    {
+        "genre": "indie r&b",
+        "count": 3
+    },
+    {
+        "genre": "traditional folk",
+        "count": 3
+    },
+    {
+        "genre": "deep melodic house",
+        "count": 3
+    },
+    {
+        "genre": "new orleans jazz",
+        "count": 3
+    },
+    {
+        "genre": "chicago blues",
+        "count": 3
+    },
+    {
+        "genre": "alternative hip hop",
+        "count": 3
+    },
+    {
+        "genre": "ragtime",
+        "count": 3
+    },
+    {
+        "genre": "spanish pop",
+        "count": 3
+    },
+    {
+        "genre": "europop",
+        "count": 3
+    },
+    {
+        "genre": "tin pan alley",
+        "count": 3
+    },
+    {
+        "genre": "progressive house",
+        "count": 3
+    },
+    {
+        "genre": "new wave pop",
+        "count": 3
+    },
+    {
+        "genre": "classical christmas",
+        "count": 4
+    },
+    {
+        "genre": "piano blues",
+        "count": 4
+    },
+    {
+        "genre": "synthpop",
+        "count": 4
+    },
+    {
+        "genre": "house",
+        "count": 4
+    },
+    {
+        "genre": "glam rock",
+        "count": 4
+    },
+    {
+        "genre": "neo mellow",
+        "count": 4
+    },
+    {
+        "genre": "latin",
+        "count": 4
+    },
+    {
+        "genre": "latin pop",
+        "count": 4
+    },
+    {
+        "genre": "country blues",
+        "count": 4
+    },
+    {
+        "genre": "hip hop",
+        "count": 4
+    },
+    {
+        "genre": "avant-garde",
+        "count": 4
+    },
+    {
+        "genre": "teen pop",
+        "count": 4
+    },
+    {
+        "genre": "piedmont blues",
+        "count": 4
+    },
+    {
+        "genre": "pop rap",
+        "count": 4
+    },
+    {
+        "genre": "country rock",
+        "count": 4
+    },
+    {
+        "genre": "easy listening",
+        "count": 4
+    },
+    {
+        "genre": "rock-and-roll",
+        "count": 4
+    },
+    {
+        "genre": "rockabilly",
+        "count": 4
+    },
+    {
+        "genre": "cool jazz",
+        "count": 5
+    },
+    {
+        "genre": "electro house",
+        "count": 5
+    },
+    {
+        "genre": "hurban",
+        "count": 5
+    },
+    {
+        "genre": "romantic",
+        "count": 5
+    },
+    {
+        "genre": "modern classical",
+        "count": 5
+    },
+    {
+        "genre": "permanent wave",
+        "count": 5
+    },
+    {
+        "genre": "hard rock",
+        "count": 5
+    },
+    {
+        "genre": "stride",
+        "count": 5
+    },
+    {
+        "genre": "soft rock",
+        "count": 5
+    },
+    {
+        "genre": "classical",
+        "count": 5
+    },
+    {
+        "genre": "acoustic blues",
+        "count": 5
+    },
+    {
+        "genre": "delta blues",
+        "count": 5
+    },
+    {
+        "genre": "traditional blues",
+        "count": 5
+    },
+    {
+        "genre": "memphis blues",
+        "count": 5
+    },
+    {
+        "genre": "blues",
+        "count": 5
+    },
+    {
+        "genre": "soul christmas",
+        "count": 5
+    },
+    {
+        "genre": "indian pop",
+        "count": 5
+    },
+    {
+        "genre": "filmi",
+        "count": 5
+    },
+    {
+        "genre": "jazz blues",
+        "count": 5
+    },
+    {
+        "genre": "folk",
+        "count": 5
+    },
+    {
+        "genre": "bebop",
+        "count": 5
+    },
+    {
+        "genre": "folk christmas",
+        "count": 5
+    },
+    {
+        "genre": "edm",
+        "count": 6
+    },
+    {
+        "genre": "singer-songwriter",
+        "count": 6
+    },
+    {
+        "genre": "folk rock",
+        "count": 6
+    },
+    {
+        "genre": "roots rock",
+        "count": 6
+    },
+    {
+        "genre": "blues-rock",
+        "count": 6
+    },
+    {
+        "genre": "mellow gold",
+        "count": 7
+    },
+    {
+        "genre": "classic rock",
+        "count": 7
+    },
+    {
+        "genre": "jazz",
+        "count": 8
+    },
+    {
+        "genre": "album rock",
+        "count": 8
+    },
+    {
+        "genre": "big band",
+        "count": 9
+    },
+    {
+        "genre": "swing",
+        "count": 11
+    },
+    {
+        "genre": "cabaret",
+        "count": 11
+    },
+    {
+        "genre": "pop christmas",
+        "count": 12
+    },
+    {
+        "genre": "vocal jazz",
+        "count": 13
+    },
+    {
+        "genre": "lounge",
+        "count": 13
+    },
+    {
+        "genre": "adult standards",
+        "count": 13
+    },
+    {
+        "genre": "christmas",
+        "count": 15
+    },
+    {
+        "genre": "dance pop",
+        "count": 15
+    },
+    {
+        "genre": "rock",
+        "count": 16
+    },
+    {
+        "genre": "pop",
+        "count": 19
+    },
+    {
+        "genre": "jazz christmas",
+        "count": 21
+    }
+]

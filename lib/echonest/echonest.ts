@@ -69,7 +69,7 @@
     
     function callAPI(method: string, params: Object, result: (data: Object) => void) {
         var url = ECHONEST_API + method + "?api_key=" + ECHONEST_KEY + "&" + $.param(params, true);
-        $.getJSON(url, result);
+        $.getJSON(url, result).fail((d) => console.log("CallAPI error: " + d));
     }
 
     export class Artist {
@@ -84,7 +84,7 @@
         public static topArtists(count: number, startYear: number, endYear: number, result: (data: Object) => void) {
             Artist.search({
                 format: "json",
-                bucket: [Bucket.hotttnesss, Bucket.genre, Bucket.years_active],
+                bucket: [Bucket.hotttnesss, Bucket.genre, Bucket.years_active, Bucket.artist_location],
                 artist_start_year_before: endYear + 1,
                 artist_start_year_after: startYear - 1,
                 sort: ArtistSearchSort.hotttnesss_desc,
