@@ -1,7 +1,5 @@
 [
-<<<<<<< HEAD
     {
-        
         "startYear": 1900,
         "endYear": 1909,
         "artists": [
@@ -3664,8 +3662,10 @@
                     "region": null,
                     "location": "Lyonshall, England",
                     "country": "United Kingdom"
-=======
-        {
+                }
+            },
+            
+            {
             "startYear": 1900,
             "endYear": 1909,
             "artists": [
@@ -4747,7 +4747,6 @@
                         "ARVM9931187FB5A934",
                         "ARTJECM1187B9930BA"
                     ]
->>>>>>> 5d1b29788af1369a0fe4441a211e5236c4b79703
                 }
             ]
         },
@@ -9810,4 +9809,7 @@
                 }
             ]
         }
+      ]
+      }
     ]
+            

@@ -81,8 +81,8 @@ var map = L.map('map').setView([41.83, -100], 3);
                 
                 
 function draw(location,i){
-    //alert(JSON.stringify(location))
-    //alert(counter)
+    alert(JSON.stringify(location))
+    alert(counter)
     if (location["results"][0] !=null){
         counter++
     var lat = location["results"][0]["geometry"]["location"]["lat"];
