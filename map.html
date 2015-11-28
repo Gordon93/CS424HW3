@@ -52,8 +52,10 @@ var map = L.map('map').setView([41.83, -100], 3);
                 }).addTo(map); 
                 
     var cities =[]
+    var countries = []
+    var decade = []
+    var genre = []
     var names = []
-    var counter =0;
                 
   function getJson(){
     $.getJSON( "data/top100.json", function( data ) {
@@ -65,14 +67,49 @@ var map = L.map('map').setView([41.83, -100], 3);
             for (var j=0; j< data[i]["artists"].length;j++){
                 
                 if(data[i]["artists"][j]["artist_location"] !=null){
-                var mycity = data[i]["artists"][j]["artist_location"]["city"]
+                var mycity = data[i]["artists"][j]["artist_location"]["city"]   
                 }
-           // if(mycity !=null){
-                
+                else{
+                    mycity = null;
+                }
                 cities.push(mycity)
+                
+                if(data[i]["artists"][j]["artist_location"] !=null){
+                    
+                 if(data[i]["artists"][j]["artist_location"]["region"] !=null){
+                     mycountry = data[i]["artists"][j]["artist_location"]["region"]
+                 }
+                    else{
+             var mycountry = data[i]["artists"][j]["artist_location"]["country"]
+             }
+                }
+                else{
+                    mycountry = null;
+                }
+                countries.push(mycountry)
+            
+                
                 var myname = data[i]["artists"][j]["name"]
                 names.push(myname)
-           // }
+                
+                if(data[i]["artists"][j]["years_active"] !=null){
+               var  myyear = data[i]["artists"][j]["years_active"][0]["start"]
+                }
+                else{
+                   var myyear = null;
+                }
+                
+                decade.push(myyear)
+                
+                if(data[i]["artists"][j]["genres"] != null){
+                    if(data[i]["artists"][j]["genres"][0] != null){
+                   var mygenre = data[i]["artists"][j]["genres"][0]["name"]
+                }
+                       }
+                else{
+                   var mygenre=null;
+                }
+               genre.push(mygenre)
         }
 }
         init();
@@ -81,10 +118,7 @@ var map = L.map('map').setView([41.83, -100], 3);
                 
                 
 function draw(location,i){
-    alert(JSON.stringify(location))
-    alert(counter)
-    if (location["results"][0] !=null){
-        counter++
+
     var lat = location["results"][0]["geometry"]["location"]["lat"];
     var lng = location["results"][0]["geometry"]["location"]["lng"];
 
@@ -100,10 +134,9 @@ function draw(location,i){
         e.openPopup();
  }
     map.on('click', onMapClick);
-   }
 }
                 
-function GetResults(city,i) {           $.getJSON("http://maps.google.com/maps/api/geocode/json?sensor=false&address="+city, function(json) {
+function GetResults(city,country,i) {           $.getJSON("http://maps.google.com/maps/api/geocode/json?sensor=false&address="+city+","+country, function(json) {
     //alert(JSON.stringify(json))
     draw(json,i);
    });
@@ -111,7 +144,7 @@ function GetResults(city,i) {           $.getJSON("http://maps.google.com/maps/a
     
     function init(){            
     for(var i=0;i<cities.length;i++){
-        GetResults(cities[i],i);
+        GetResults(cities[i],countries[i],i);
         }
         console.log(cities)
         console.log(names)
