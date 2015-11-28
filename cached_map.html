@@ -56,11 +56,12 @@ var map = L.map('map').setView([41.83, -100], 3);
     var decade = []
     var genre = []
     var names = []
+    var marker = new Array();
                 
   function getJson(){
     $.getJSON( "data/top100.json", function( data ) {
         
-        alert(JSON.stringify(data))
+        //alert(JSON.stringify(data))
    // now you can read the 
         
         for (var i=0; i<data.length; i++){
@@ -112,7 +113,14 @@ var map = L.map('map').setView([41.83, -100], 3);
                genre.push(mygenre)
         }
 }
-        init();
+         
+         names = names.slice(0,103)
+         cities = cities.slice(0,103)
+         decade = decade.slice(0,103)
+         countries = countries.slice(0,103)
+         genre = genre.slice(0,103)
+         
+        GetResults();
 });
   }
                 
@@ -121,7 +129,8 @@ function draw(location,i){
 
     var lat = location["results"][0]["geometry"]["location"]["lat"];
     var lng = location["results"][0]["geometry"]["location"]["lng"];
-    
+    alert([lat,lng])
+    alert(names[i])
     var marker = L.marker([lat,lng]).addTo(map);
     
     var mylocation = "https://en.wikipedia.org/wiki/"+cities[i]
@@ -131,22 +140,29 @@ function draw(location,i){
     function onMapClick(e) {
         e.openPopup();
  }
+    
     map.on('click', onMapClick);
 }
                 
-function GetResults(city,country,i) {           $.getJSON("http://maps.google.com/maps/api/geocode/json?sensor=false&address="+city+","+country, function(json) {
-    //alert(JSON.stringify(json))
-    // writing the json to a file
-    console.log(JSON.stringify(json))
-    draw(json,i);
+function GetResults() {           
+     $.getJSON("locations.json", function( data ) {
+     //alert(JSON.stringify(data))
+    // alert(data.length)
+     for (var i=0; i<data.length; i++){
+         alert(JSON.stringify(data[i]))
+         draw(data[i],i);
+     }
    });
+    console.log(JSON.stringify(cities))
+    console.log(cities.length)
+    console.log(JSON.stringify(countries))
+    console.log(countries.length)
+    console.log(JSON.stringify(names))
+    console.log(names.length)
+    console.log(JSON.stringify(decade))
+    console.log(decade.length)
      }
     
-    function init(){            
-    for(var i=0;i<cities.length;i++){
-        GetResults(cities[i],countries[i],i);
-        }
-    }
                 
                 getJson();
                 
