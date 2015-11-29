@@ -42,6 +42,17 @@ class LiteEvent<T> implements ILiteEvent<T> {
     }
 }
 
+function capitalizeWords( str )
+{
+    var pieces = str.split(" ");
+    for ( var i = 0; i < pieces.length; i++ )
+    {
+        var j = pieces[i].charAt(0).toUpperCase();
+        pieces[i] = j + pieces[i].substr(1);
+    }
+    return pieces.join(" ");
+}
+
 module datautil {
 	export function primaryGenre(gm: any, genres: any) {
 		var wg = genres.map(d => ({name: d.name, weight: gm[d.name]}));

@@ -112,5 +112,9 @@
             }
             decadeDo(0);
         }
+        
+        public static primaryGenre(artist: any) {
+            
+        }
     }
 }

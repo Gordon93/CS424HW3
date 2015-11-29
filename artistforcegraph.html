@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        			div.tooltip {	
+				position: absolute;			
+				text-align: left;			
+				/*width: 60px;*/					
+				/*height: 28px;*/					
+				padding: 5px;				
+				font: 12px sans-serif;		
+				background: lightsteelblue;	
+				border: 0px;		
+				border-radius: 8px;			
+				pointer-events: none;			
+			}   
+			
+			#output .node text {
+				pointer-events: none;
+				font: 10px sans-serif;
+			}        
+    </style>
+    
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/d3/d3.js"></script>
+    <script src="lib/common.js"></script>
+    <script src="lib/echonest/echonest.js"></script>
+    <script src="lib/artistforcegraph.js"></script>
+    
+    <script>
+        $(function() {
+            fdg.init("#output");
+            /*var fdg = new ArtistForceGraph("output");
+            //fdg.data([[0, 1], [1, 2]]);
+            d3.json("data/top100.json", function (err, data) {
+                var artists = [].concat.apply([], data.map(function (d) { return d.artists; }));
+                //console.log(artists);
+                fdg.dataArtists(artists); 
+            });*/
+        });
+    </script>
+</head>
+
+<body>
+    <div id="output"></div>
+</body>

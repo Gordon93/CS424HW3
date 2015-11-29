@@ -52,10 +52,8 @@ var map = L.map('map').setView([41.83, -100], 3);
                 }).addTo(map); 
                 
     var cities =[]
-    var countries = []
-    var decade = []
-    var genre = []
     var names = []
+    var counter =0;
                 
   function getJson(){
     $.getJSON( "data/top100.json", function( data ) {
@@ -67,49 +65,14 @@ var map = L.map('map').setView([41.83, -100], 3);
             for (var j=0; j< data[i]["artists"].length;j++){
                 
                 if(data[i]["artists"][j]["artist_location"] !=null){
-                var mycity = data[i]["artists"][j]["artist_location"]["city"]   
+                var mycity = data[i]["artists"][j]["artist_location"]["city"]
                 }
-                else{
-                    mycity = null;
-                }
+           // if(mycity !=null){
+                
                 cities.push(mycity)
-                
-                if(data[i]["artists"][j]["artist_location"] !=null){
-                    
-                 if(data[i]["artists"][j]["artist_location"]["region"] !=null){
-                     mycountry = data[i]["artists"][j]["artist_location"]["region"]
-                 }
-                    else{
-             var mycountry = data[i]["artists"][j]["artist_location"]["country"]
-             }
-                }
-                else{
-                    mycountry = null;
-                }
-                countries.push(mycountry)
-            
-                
                 var myname = data[i]["artists"][j]["name"]
                 names.push(myname)
-                
-                if(data[i]["artists"][j]["years_active"] !=null){
-               var  myyear = data[i]["artists"][j]["years_active"][0]["start"]
-                }
-                else{
-                   var myyear = null;
-                }
-                
-                decade.push(myyear)
-                
-                if(data[i]["artists"][j]["genres"] != null){
-                    if(data[i]["artists"][j]["genres"][0] != null){
-                   var mygenre = data[i]["artists"][j]["genres"][0]["name"]
-                }
-                       }
-                else{
-                   var mygenre=null;
-                }
-               genre.push(mygenre)
+           // }
         }
 }
         init();
@@ -118,46 +81,43 @@ var map = L.map('map').setView([41.83, -100], 3);
                 
                 
 function draw(location,i){
-
+    alert(JSON.stringify(location))
+    alert(counter)
+    if (location["results"][0] !=null){
+        counter++
     var lat = location["results"][0]["geometry"]["location"]["lat"];
     var lng = location["results"][0]["geometry"]["location"]["lng"];
+
+    console.log([lat,lng]);
     
     var marker = L.marker([lat,lng]).addTo(map);
     
     var mylocation = "https://en.wikipedia.org/wiki/"+cities[i]
     var myartist = "https://en.wikipedia.org/wiki/"+names[i]
     //marker.bindPopup("<a href= '" + mylocation + "' >City</a>");
-    marker.bindPopup(names[i] + " belonged to " +genre[i]+ " is from " +cities[i]+" and started playing in "+decade[i] );
+    marker.bindPopup(names[i] + " is from " +cities[i]);
     function onMapClick(e) {
         e.openPopup();
  }
     map.on('click', onMapClick);
+   }
 }
                 
-function GetResults(city,country,i) {           $.getJSON("http://maps.google.com/maps/api/geocode/json?sensor=false&address="+city+","+country, function(json) {
+function GetResults(city,i) {           $.getJSON("http://maps.google.com/maps/api/geocode/json?sensor=false&address="+city, function(json) {
     //alert(JSON.stringify(json))
-    // writing the json to a file
-    console.log(JSON.stringify(json))
     draw(json,i);
    });
      }
     
     function init(){            
     for(var i=0;i<cities.length;i++){
-        GetResults(cities[i],countries[i],i);
+        GetResults(cities[i],i);
         }
+        console.log(cities)
+        console.log(names)
     }
                 
                 getJson();
-                
-                
-    function addNode(){
-        // adding a new artist
-    }
-                
-    function removeNode(){
-        // removing a marker
-    }
               </script>
             </body>
 </html>
