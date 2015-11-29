@@ -280,12 +280,22 @@
                     var lng = location["results"][0]["geometry"]["location"]["lng"];
                     //alert([lat,lng])
                     //alert(names[i])
-                    var marker = L.marker([lat,lng]).addTo(map);
-
+                    //var marker = L.marker([lat,lng]).addTo(map);
+                    var mycolor = datautil.genreColor(genre[i])
+                    
+                    var circle = L.circle([lat, lng], 30000
+                    ,{
+                    color: mycolor,
+                    //fillColor: '#f03',
+                    fillOpacity: 1
+                    }).addTo(map);
+                    
+                    //circle.setRadius=10000
+                    
                     var mylocation = "https://en.wikipedia.org/wiki/"+cities[i]
                     var myartist = "https://en.wikipedia.org/wiki/"+names[i]
                     //marker.bindPopup("<a href= '" + mylocation + "' >City</a>");
-                    marker.bindPopup(names[i] + " belonged to " +genre[i]+ " is from " +cities[i]+" and started playing in "+decade[i] );
+                    circle.bindPopup(names[i] + " belonged to " +genre[i]+ " is from " +cities[i]+" and started playing in "+decade[i] );
                     function onMapClick(e) {
                         e.openPopup();
                     }
