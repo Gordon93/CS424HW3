@@ -3,6 +3,7 @@
  */
 var x, y1,y0,xAxis,yAxis,
     graph1,bar1,margin,height,width;
+var total = 0;
 
 
 var color1 = d3.scale.category20();
@@ -34,6 +35,7 @@ d3.csv('pythonScripts/top10GenrePerDecade.csv',function(error,data){
         d.HOT = parseFloat(d.HOT);
         d.NUMGENRE = parseInt(d.NUMGENRE);
         d.NUMARTIST = +d.NUMARTIST;
+        total = d.NUMARTIST + total;
 
         if(group==10)
             group=1;
@@ -117,13 +119,25 @@ function barInit(top10,graph) {
 
 
 
+    var max = d3.max(top10,function (d) {return d.NUMARTIST});
+    var min = d3.min(top10,function(d){return d.NUMARTIST});
+    var a = 1;
+    var b = 10;
+
+    top10.forEach(function(d){
+        d.NORM = (((d.NUMARTIST - (max*1000))*(b-a))/(min - (max*1000)))
+    })
+
+
+
+
     var nest = d3.nest()
         .key(function(d){return d.GROUP;});
 
     var stack = d3.layout.stack()
         .values(function(d){return d.values; })
         .x(function (d){return d.START;})
-        .y(function(d){return d.NUMARTIST;})
+        .y(function(d){return d.NORM;})
         .out(function(d,y0){d.valueOffset = y0;});
 
    // var color = d3.scale.category10();
@@ -162,7 +176,7 @@ function barInit(top10,graph) {
 
     x.domain(dataByDecade[0].values.map(function(d) {return d.START; }));
     y0.domain(dataByDecade.map(function(d){return d.key; }));
-    y1.domain([0,d3.max(top10,function(d){return d.NUMARTIST;})]).range([y0.rangeBand(),0]);
+    y1.domain([0,d3.max(top10,function(d){return d.NORM;})]).range([y0.rangeBand(),0]);
 
 
     graph.append("g")
@@ -184,18 +198,18 @@ function barInit(top10,graph) {
 
     decade.append("text")
         .attr("x",-6)
-        .attr("y",function(d){return y1(d.values[0].NUMARTIST/2 + d.values[0].valueOffset);})
+        .attr("y",function(d){return y1(d.values[0].NORM/2 + d.values[0].valueOffset);})
         .attr("dy",".35em");
 
     decade.selectAll("bar")
         .data(function(d){return d.values;})
         .enter().append("rect")
-        .style("fill",function(d){return color(d.GROUP);})
+        .style("fill",function(d){return datautil.genreColor(d.GENRE);})
         .attr("class","relative")
         .attr("x",function(d){return x(d.START)})
-        .attr("y",function(d){return y1(d.NUMARTIST + d.valueOffset);})
+        .attr("y",function(d){return y1(d.NORM + d.valueOffset);})
         .attr("width", x.rangeBand())
-        .attr("height", function(d) { return y0.rangeBand() - y1(d.NUMARTIST); })
+        .attr("height", function(d) { return y0.rangeBand() - y1(d.NORM); })
         .on("mouseover",function(d){showPopover.call(this,d);})
         .on("mouseout",function(d){removePopovers();});
 
