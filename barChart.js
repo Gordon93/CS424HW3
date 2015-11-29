@@ -64,9 +64,10 @@ function createbar() {
 
     //set the dimensions of the canvas/graph
     margin = {top: 10, right: 20, bottom: 30, left: 50},
-        width = parseInt(d3.select('#chartContainer').style('width'),10),
+        width = parseInt(d3.select('#timeline').style('width'),10),
         width = (width - margin.left - margin.right),
-        height = parseInt(d3.select('#chartContainer').style('height'),10)-margin.bottom - margin.top;
+        height = parseInt(d3.select('#timeline').style('height'),10)-margin.bottom - margin.top;
+        //height = ((window.innerHeight) *.30)-margin.bottom - margin.top;
 
     /*margin = {top: 10, right: 20, bottom: 20, left: 60},
         width = 960 - margin.left - margin.right,
@@ -79,11 +80,11 @@ function createbar() {
     // console.log(height);
 
     bar1 = d3.select("#bar").append("svg")
-        /*.attr("width", width + margin.left + margin.right)*/
-        /*.attr("height", height + margin.top + margin.bottom)*/
-        .attr("preserveAspectRatio", "xMidYMid meet")
-        .attr("viewBox", "0 0 1050 200")
-        .classed("svg-content-responsive", true)
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        /*.attr("preserveAspectRatio", "xMidYMid meet")
+        .attr("viewBox", "0 0 1050 200")*/
+        //.classed("svg-content-responsive", true)
         .append("g")
         .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
@@ -113,6 +114,7 @@ function barInit(top10,graph) {
     yAxis = d3.svg.axis()
         .scale(y0)
         .orient("left");
+
 
 
     var nest = d3.nest()
@@ -156,6 +158,8 @@ function barInit(top10,graph) {
      });*/
 
 
+
+
     x.domain(dataByDecade[0].values.map(function(d) {return d.START; }));
     y0.domain(dataByDecade.map(function(d){return d.key; }));
     y1.domain([0,d3.max(top10,function(d){return d.NUMARTIST;})]).range([y0.rangeBand(),0]);
@@ -187,6 +191,7 @@ function barInit(top10,graph) {
         .data(function(d){return d.values;})
         .enter().append("rect")
         .style("fill",function(d){return color(d.GROUP);})
+        .attr("class","relative")
         .attr("x",function(d){return x(d.START)})
         .attr("y",function(d){return y1(d.NUMARTIST + d.valueOffset);})
         .attr("width", x.rangeBand())
