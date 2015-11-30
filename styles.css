@@ -52,7 +52,7 @@ h3 {
 }
 
 .pageContent {
-	padding-top: 60px;
+	padding-top: 40px;
 }
 
 .map div { 
@@ -67,6 +67,9 @@ h3 {
     color: white;
 }
 
+.navbar {
+    margin-bottom: 0;
+}
 
 .info h4 {
     margin: 0 0 5px;
@@ -153,17 +156,17 @@ ul.tabs li.current{
 
 .tab-content{
     display: none;
-    padding: 15px;
+    padding: 0px;
 }
 
 .tab-content.current{
     display: inherit;
 }
 
-input[type="checkbox"]{
-    width: 1vw; /*Desired width*/
-    height: 1.2vw; /*Desired height*/
-    cursor: pointer;
-    -webkit-appearance: none;
-    appearance: none;
-}
+/*input[type="checkbox"]{*/
+    /*width: 1vw; /!*Desired width*!/*/
+    /*height: 1.2vw; /!*Desired height*!/*/
+    /*cursor: pointer;*/
+    /*-webkit-appearance: none;*/
+    /*appearance: none;*/
+/*}*/
