@@ -3,9 +3,9 @@
  */
 var x, y1,y0,xAxis,yAxis,
     graph1,bar1,margin,height,width;
-var artistList = [];
-var genreList = ["hip hop"];
-var decadeList = [1970,2000];
+var artistList = new Array(2);
+var genreList = new Array(2);
+var decadeList = new Array(2);
 var total = 0;
 
 
@@ -54,7 +54,7 @@ d3.csv('pythonScripts/top10GenrePerDecade.csv',function(error,data){
 
     createbar();
     barInit(top10Genres,graphs[0].bar);
-    HLBar(top10Genres,graphs[0].bar);
+    //HLBar(top10Genres,graphs[0].bar);
 
 });
 
@@ -185,12 +185,17 @@ function barInit(top10,graph) {
 
 }
 
-function genreUpdate(newGenreList){
+function genreUpdate(userId,newGenre){
+
+    if(userId==1){
+        genreList
+
+    }
     genreList = newGenreList;
 
 }
 
-function artistUpdate(newArtistList){
+function artistUpdate(userId,newArtist){
     artistList = newArtistList;
     if(artistList!=[]){
         artistList.forEach(function(d){
@@ -202,7 +207,7 @@ function artistUpdate(newArtistList){
 
 
 }
-function decadeUpdate(newDecadeList){
+function decadeUpdate(userId,newDecade){
     decadeList = newDecadeList;
 }
 
