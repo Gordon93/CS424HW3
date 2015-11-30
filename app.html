@@ -55,6 +55,7 @@
         <script src="lib/common.js"></script>
         <script src="lib/echonest/echonest.js"></script>
         <script src="lib/artistforcegraph.js"></script>
+        <script src="lib/artistdata.js"></script>
 
 
     </head>
@@ -103,50 +104,75 @@
                 })
             </script>
 
+            <div id="user1panel" class="inline" style="height:90vh; width:17vw;font-size:1vw;">
+                <div id="user1info" style="height:40%;width:100%;overflow:auto;">
+                    <div style="width:50%;height:100%;" class="inline">
+                        <h3 style="font-size:1vw;margin-top:8px;">Artists</h3>
+                            <div id="user1_artistlist" style="width:100%;height:86%;overflow:auto;"></div>
+                    </div>
 
-            <div id="user1panel" class="inline" style="height:95vh; width:17vw;font-size:1vw;">
-                <div id="user1info" style="height:40%;">
-                    <fieldset id="user1_artistlist" style="width:50%;overflow:auto;">
-                        <legend style="font-size:12px;font-size:1vw; overflow:auto">Artists</legend>
-                        <div id="user1_artistdisplay" style="width:100%;height:100%;"></div>
-                    </fieldset>
-                    <fieldset id="user1_genrelist" style="width:50%;overflow:auto;">
-                        <legend style="font-size:12px;font-size:1vw; overflow:auto">Genres</legend>
-                        <div id="user1_genresgenre" style="width:100%;height:100%;"></div>
-                    </fieldset>
+                    <div style="width:50%;height:100%;" class="inline">
+                        <h3 style="font-size:1vw;margin-top:8px;">Genres</h3>
+                            <div id="user1_genrelist" style="width:100%;height:86%;overflow:auto;"></div>
+                    </div>
                 </div>
-                <div id="user1interface" style="height:50%">
+                <div id="user1interface" style="height:60%">
                     <ul class="tabs">
                         <li class="tab-link current" data-tab="user1_highlight">Selection</li>
                         <li class="tab-link" data-tab="user1_artists">Artists</li>
                         <li class="tab-link" data-tab="user1_genres">Genres</li>
                     </ul>
 
-                    <div id="user1_highlight" style="height:90%;" class="tab-content current">
-                        <input type="checkbox" name="user1_selection_checkbox_artist" value="artist">Artist:
-                            <input type="text" id="user1_selection_textbox_artist"> <br/>
-                        <input type="checkbox" name="user1_selection_checkbox_genre" value="artist">Genre:
-                            <select id="user1_selection_genrelist">
-                            </select><br/>
-                        <input type="checkbox" name="user1_selection_checkbox_decade" value="artist">Decade:
-                            <select id="user1_selection_decadelist">
-                            </select><br/>
-                        <button id="user1_selection_button" style="width:8vw;height:4vh;font-size:.6vw">Highlight Selection</button>
+                    <div id="user1_highlight" style="height:100%;" class="tab-content current">
+                        <input type="checkbox" id="user1_selection_checkbox_artist" value="artist">Artist:
+                        <select id="user1_selection_artistlist" style="width:70%;"></select> <br/>
+                        <input type="checkbox" id="user1_selection_checkbox_genre" value="artist">Genre:
+                        <select id="user1_selection_genrelist" style="width:70%;">
+                        </select><br/>
+                        <input type="checkbox" id="user1_selection_checkbox_decade" value="artist">Decade:
+                        <select id="user1_selection_decadelist" style="width:70%;">
+                            <option value="1900">1900's</option>
+                            <option value="1910">1910's</option>
+                            <option value="1920">1920's</option>
+                            <option value="1930">1930's</option>
+                            <option value="1940">1940's</option>
+                            <option value="1950">1950's</option>
+                            <option value="1960">1960's</option>
+                            <option value="1970">1970's</option>
+                            <option value="1980">1980's</option>
+                            <option value="1990">1990's</option>
+                            <option value="2000">2000's</option>
+                            <option value="2010">2010's</option>
+                        </select><br/>
+                        <button id="user1_selection_button" onclick="user1_highlight_selections()" style="width:8vw;height:4vh;font-size:.6vw">Highlight Selection</button>
                     </div>
                     <div id="user1_artists" style="height:90%;" class="tab-content">
                         <div class="inline" style="height:100%;width:30%;">
-                            <select multiple id="user1_artist_artistlist" style="height:90%;">
+                            <select multiple id="user1_artist_artistlist"  style="height:80%;width:100%;overflow:auto;">
                             </select> <br/>
-                            <button id="user1_artist_button_removeartist" style="width:6vw;height:4vh;">Remove</button>
+                            <button id="user1_artist_button_removeartist" onclick="user1_removeartist()" style="width:6vw;height:4vh;">Remove</button>
                         </div>
                         <div style="height:100%;width:40%" class="inline">
                             Name: <input type="text" style="width:60%" id="user1_artist_textbox_artistsearch"><br/>
-                            Genre: <select id="user1_artist_selection_genre"></select> <br/>
-                            Decade:<select id="user1_artist_selection_decade"></select> <br/>
-                            <button id="user1_artist_button_searchartist" style="widht:6vw;height:4vh;">Search</button> <br/>
-                            <select multiple id="user1_artist_searchresults" style="height:40%;">
+                            Genre: <select id="user1_artist_selection_genre" style="width:70%;"></select> <br/>
+                            Decade:<select id="user1_artist_selection_decade" style="width:60%;">
+                            <option value="1900">1900's</option>
+                            <option value="1910">1910's</option>
+                            <option value="1920">1920's</option>
+                            <option value="1930">1930's</option>
+                            <option value="1940">1940's</option>
+                            <option value="1950">1950's</option>
+                            <option value="1960">1960's</option>
+                            <option value="1970">1970's</option>
+                            <option value="1980">1980's</option>
+                            <option value="1990">1990's</option>
+                            <option value="2000">2000's</option>
+                            <option value="2010">2010's</option>
+                        </select> <br/>
+                            <button id="user1_artist_button_searchartist" style="width:6vw;height:4vh;">Search</button> <br/>
+                            <select multiple id="user1_artist_searchresults" style="height:40%;width:100%;overflow:auto;">
                             </select> <br/>
-                            <button id="user1_artist_button_addartist" style="width:5vw;height:4vh;">Add</button> <br/>
+                            <!--<button id="user1_artist_button_addartist" onclick="user1_addartist()" style="width:5vw;height:4vh;">Add</button> <br/>-->
                         </div>
                         <div class="inline" style="height:100%; width:30%;">
                             Related Artists <br/>
@@ -157,36 +183,59 @@
 
                     <div id="user1_genres" style="height:90%;" class="tab-content">
                         <div class="inline" style="height:100%;width:40%;">
-                            <select multiple id="user1_genre_selection_genrelist" style="height:90%;">
+                            <select multiple id="user1_genre_genrelist" style="height:80%;width:100%;overflow:auto;">
                             </select> <br/>
-                            <button id="user1_genre_button_removegenre" style="width:6vw;height:4vh;">Remove</button>
+                            <button id="user1_genre_button_removegenre" onclick="user1_removegenre()" style="width:6vw;height:4vh;">Remove</button>
                         </div>
                         <div style="height:100%;width:60%" class="inline">
                             Name: <input type="textbox" style="width:60%" id="user1_genre_artistsearch"><br/>
-                            Decade:<select id="user1_genre_selection_decade"></select> <br/>
-                            Sort by: <select id="user1_genre_selection_sort"></select> <br/>
+                            Decade:<select id="user1_genre_selection_decade" style="width:60%;">
+                            <option value="1900">1900's</option>
+                            <option value="1910">1910's</option>
+                            <option value="1920">1920's</option>
+                            <option value="1930">1930's</option>
+                            <option value="1940">1940's</option>
+                            <option value="1950">1950's</option>
+                            <option value="1960">1960's</option>
+                            <option value="1970">1970's</option>
+                            <option value="1980">1980's</option>
+                            <option value="1990">1990's</option>
+                            <option value="2000">2000's</option>
+                            <option value="2010">2010's</option>
+                        </select> <br/>
+                            Sort by: <select id="user1_genre_selection_sort" style="width:70%;">
+                            <option value="alpha">Alphabetical</option>
+                            <option value="hot">Hotness</option>
+
+                        </select> <br/>
                             <button id="user1_genre_button_searchgenre" style="width:6vw;height:4vh;">Search</button> <br/>
-                            <select multiple id="user1_genre_selection_genre" style="height:50%;">
+                            <select multiple id="user1_genre_selection_genre" style="height:60%;">
                             </select> <br/>
-                            <button id="user1_genre_button_addgenre" style="width:5vw;height:4vh;">Add</button> <br/>
+                            <!--<button id="user1_genre_button_addgenre" style="width:5vw;height:4vh;">Add</button> <br/>-->
                         </div>
                     </div>
                 </div>
             </div>
 
-        <div id="shared" class="inline" style="height:95vh; width:64vw;">
-            <div id="timeline" style="width:100%;height:30%;">
-                <div id="chartContainer" style="width:100%;height:100%;">
-                    <div id="bar"></div>
+            <div id="shared" class="inline" style="height:90vh; width:64vw;">
+                <div id="timeline" style="width:100%;height:30%;">
+                    <div id="chartContainer" style="width:100%;height:100%;">
+                        <div id="bar"></div>
+                    </div>
+                </div>
+                <div id="map" class="inline" style="width:50%;height:70%">
+                </div>
+                <div id="fdg" class="inline" style="width:50%;height:70%">
                 </div>
             </div>
-            <div id="map" class="inline" style="width:50%;height:70%">
+        </div>
             </div>
-            <div id="fdg" class="inline" style="width:50%;height:70%">
             </div>
 
             <!--map js code-->
             <script type="text/javascript">
+
+
 
                 var map = L.map('map').setView([41.83, -100], 3);
 
@@ -282,16 +331,16 @@
                     //alert(names[i])
                     //var marker = L.marker([lat,lng]).addTo(map);
                     var mycolor = datautil.genreColor(genre[i])
-                    
+
                     var circle = L.circle([lat, lng], 30000
                     ,{
                     color: mycolor,
                     //fillColor: '#f03',
                     fillOpacity: 1
                     }).addTo(map);
-                    
+
                     //circle.setRadius=10000
-                    
+
                     var mylocation = "https://en.wikipedia.org/wiki/"+cities[i]
                     var myartist = "https://en.wikipedia.org/wiki/"+names[i]
                     //marker.bindPopup("<a href= '" + mylocation + "' >City</a>");
@@ -341,9 +390,323 @@
                     fdg.init("#fdg");
                 });
             </script>
+            <script>
+
+                $(function () {
+                    initSearchUI();
+                    artistdata.init();
+                    artistdata.artistsChanged.on(artistsChanged);
+                });
+                function initSearchUI() {
+                    $("#user1_artist_button_searchartist").click(function() {
+                        var search = $("#user1_artist_textbox_artistsearch").val();
+
+                        function renderResults(r) {
+                            d3.select("#user1_artist_searchresults").selectAll("option").remove();
+                            r.forEach(function(d) {
+                                d3.select("#user1_artist_searchresults")
+                                        .append("option")
+                                        .attr("value", d.id)
+                                        .text(d.name)
+                                        .on("dblclick", function () { user1_addArtist(d.id); });
+                            });
+                        }
+
+                        artistdata.search(search, renderResults);
+                    });
+                }
+
+                var userList = [];
+
+                function user1_addArtist(id) {
+                    for (var i in d3.range(userList.length))
+                        if (userList[i].id === id)
+                            return;
+
+                    artistdata.fetchArtist(id, function (a) {
+                        userList.push(a);
+                        artistdata.addArtist(a);
+
+                        function renderUserList() {
+                            var options = d3.select("#user1_artistlist")
+                                    .selectAll("option")
+                                    .data(userList, function(d) { return d.id; });
+
+                            options.enter()
+                                    .append("option")
+                                    .text(function (d) { return d.name; })
+
+                            options.exit()
+                                    .remove();
+
+                            var options2 = d3.select("#user1_artist_artistlist")
+                                    .selectAll("option")
+                                    .data(userList, function(d) { return d.id; });
+
+                            options2.enter()
+                                    .append("option")
+                                    .text(function (d) { return d.name; })
+
+                            options2.exit()
+                                    .remove();
+                        }
+
+                        renderUserList();
+                        updateRecommended();
+                        fdg.graph.addNode(a);
+
+                    });
+                }
+
+                function artistsChanged() {
+                    renderArtistNames();
+                    renderGenres();
+                }
+
+                function renderArtistNames() {
+                    var data = artistdata.getArtists();
+                    data.sort(function (a, b) {
+                        return a.name.localeCompare(b.name);
+                    });
+                    var options = d3.select("#user1_selection_artistlist")
+                            .selectAll("option")
+                            .data(data, function (d) {
+                                return d.id;
+                            });
+
+                    options.enter()
+                            .append("option")
+                            .text(function (d) {
+                                return d.name;
+                            });
+
+                    options.exit()
+                            .remove();
+                }
 
 
-        </div>
-        </div>
+                function renderGenres() {
+                    var data = artistdata.getGenres();
+                    data.sort();
+                    var options = d3.select("#user1_selection_genrelist")
+                            .selectAll("option")
+                            .data(data, function (d) { return d; });
+
+                    options.enter()
+                            .append("option")
+                            .property("value", function (d) { return d; })
+                            .text(function (d) { return capitalizeWords(d); });
+
+                    options.exit()
+                            .remove();
+
+
+                    var options = d3.select("#user1_artist_selection_genre")
+                            .selectAll("option")
+                            .data(data, function (d) { return d; });
+
+                    options.enter()
+                            .append("option")
+                            .text(function (d) { return capitalizeWords(d); });
+
+                    options.exit()
+                            .remove();
+
+                    var options = d3.select("#user1_genre_selection_genre")
+                            .selectAll("option")
+                            .data(data, function (d) { return d; });
+
+                    options.enter()
+                            .append("option")
+                            .text(function (d) { return capitalizeWords(d); });
+
+                    options.exit()
+                            .remove();
+                }
+            </script>
+
+            <!--add to list-->
+            <script>
+                /*function user1_addartist()
+                 {
+                 var selected = document.getElementById('user1_artist_searchresults');
+                 var artist = selected.options[selected.selectedIndex].text;
+                 //alert(artist);
+                 var newartist = document.createElement('option');
+                 newartist.text = artist;
+                 var list1 = document.getElementById('user1_artistlist');
+                 //alert(newartist.text);
+                 list1.appendChild(newartist);
+                 var newartist2 = document.createElement('option');
+                 newartist2.text = artist;
+                 var list2 = document.getElementById('user1_artist_artistlist');
+                 list2.appendChild(newartist2);
+                 }*/
+
+                function updateRecommended() {
+                    var ids = userList.map(function (a) { return a.id; });
+                    if (ids.length > 0)
+                        echonest.Artist.similar(ids, renderRecommended);
+                    else
+                        renderRecommended([]);
+                    function renderRecommended(data) {
+                        var options = d3.select("#user1_artist_relatedartists")
+                                .selectAll("option")
+                                .data(data, function(d) { return d.id; });
+
+                        options.enter()
+                                .append("option")
+                                .text(function (d) { return d.name; })
+
+                        options.exit()
+                                .remove();
+                    }
+                }
+
+                function user1_removeartist()
+                {
+                    var i;
+                    var selected = document.getElementById('user1_artist_artistlist');
+                    var artist = selected.options[selected.selectedIndex].text;
+                    for(i=0;;i++)
+                    {
+                        if(selected.options[i].text == artist)
+                            break;
+                    }
+                    selected.removeChild(selected.options[i]);
+                    var selected2 = document.getElementById('user1_artistlist');
+                    selected2.removeChild(selected2.children[i]);
+                    userList.splice(i,1);
+                    updateRecommended();
+                }
+
+                var genreList = [];
+                document.getElementById('user1_genre_selection_genre').ondblclick = function()
+                {
+                    var selected = document.getElementById('user1_genre_selection_genre');
+                    var genre = selected.options[selected.selectedIndex].text;
+                    var list1 = document.getElementById('user1_genre_genrelist');
+
+                    var i;
+
+                    for(i=0;;i++)
+                    {
+                        if(list1.options[i] == undefined)
+                            break;
+                        if(list1.options[i].text == genre)
+                        {
+                            return;
+                        }
+                    }
+
+                    genreList.push(genre);
+                    var newgenre = document.createElement('option');
+                    newgenre.text = genre;
+                    //alert(newartist.text);
+                    list1.appendChild(newgenre);
+                    var newgenre2 = document.createElement('option');
+                    newgenre2.text = genre;
+                    var list2 = document.getElementById('user1_genrelist');
+                    list2.appendChild(newgenre2);
+
+                }
+
+                function user1_removegenre()
+                {
+                    var i;
+                    var selected = document.getElementById('user1_genre_genrelist');
+                    var genre = selected.options[selected.selectedIndex].text;
+                    for(i=0;;i++)
+                    {
+                        if(selected.options[i].text == genre)
+                            break;
+                    }
+                    selected.removeChild(selected.options[i]);
+                    var selected2 = document.getElementById('user1_genrelist');
+                    selected2.removeChild(selected2.children[i]);
+                    genreList.splice(i,1);
+                }
+
+
+                function user1_highlight_selections()
+                {
+                    var artist = document.getElementById('user1_selection_artistlist').options[document.getElementById('user1_selection_artistlist').selectedIndex].text;
+                    var genre = document.getElementById('user1_selection_genrelist').value;
+                    var decade = document.getElementById('user1_selection_decadelist').value;
+                    var isartist= document.getElementById('user1_selection_checkbox_artist').checked;
+                    var isgenre= document.getElementById('user1_selection_checkbox_genre').checked;
+                    var isdecade= document.getElementById('user1_selection_checkbox_decade').checked;
+
+                    var id = artistdata.getArtists().filter(function(a)
+                    {
+//                        debugger;
+                        if(isartist)
+                            if(a.name !== artist)
+                            return false;
+                        if(isgenre)
+                            if(a.genre !== genre)
+                                return false;
+                        if(isdecade)
+                            if(a.year-(a.year%10) !== +decade)
+                                return false;
+
+                        return true;
+                    }).map(function (a) { return a.id; });
+                    fdg.graph.highlight("user1",id);
+
+                       var user = [];
+                       var id = 1;
+                       var bool = false;
+                       if(isartist) {
+                           bool = true;
+                           user.push(id,bool,artist);
+                           user = [];
+                           //artistUpdate(user);
+                       }
+                       else if(!isartist){
+                           bool = false;
+                           user.push(id,bool,artist);
+                           user = [];
+                           //artistUpdate(user);
+                       }
+
+                        if(isgenre) {
+                            bool = true;
+                            user.push(id,bool,genre);
+                            console.log(user);
+                            user =[];
+                            //genreUpdate(user);
+                        }
+                       else if(!isgenre){
+                            bool = false;
+                            user.push(id,bool,genre);
+                            user = [];
+                            //genreUpdate(user);
+
+                        }
+
+                        if(isdecade) {
+                            bool = true;
+                            user.push(id,bool,decade);
+                            user =[];
+                            //decadeUpdate(user);
+                        }
+                       else if(!isdecade){
+                            bool = false;
+                            user.push(id,bool,decade);
+                            user = [];
+                            //decadeUpdate(user)
+                        }
+
+
+
+
+
+
+
+
+                }
+            </script>
+
 	</body>
 </html>

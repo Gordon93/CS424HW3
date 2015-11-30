@@ -2,7 +2,7 @@
     var ECHONEST_API = "http://developer.echonest.com/api/v4";
     var ECHONEST_KEY = "7EPUF3TJXQEUWJB0Z";
 
-    class Bucket {
+    export class Bucket {
         value: string;
         constructor(value: string) { this.value = value; }
         toString(): string { return this.value; }
@@ -28,7 +28,7 @@
         static years_active = new Bucket("years_active");
     }
     
-    class ArtistSearchSort {
+    export class ArtistSearchSort {
         value: string;
         constructor(value: string) { this.value = value; }
         toString(): string { return this.value; }
@@ -73,6 +73,10 @@
     }
 
     export class Artist {
+        public static profile(params: any, result: (data: Object) => void) {
+            callAPI("/artist/profile", params, result);    
+        }
+        
         public static search(params: ArtistSearchParams, result: (data: Object) => void) {
             callAPI("/artist/search", params, result);
         }
