@@ -1,0 +1,6 @@
+add artist/genre list to map/timeline/fdg
+artist search considers genre/decade
+sort genre
+filter genre by decade, artist name
+map reset view
+

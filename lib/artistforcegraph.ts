@@ -20,8 +20,8 @@ module fdg {
 			function yearIn(y:number, s:number, e:number) {
 				return y >= s && y <= e;
 			}	
-			graph.highlight("user1", artists.filter(d => yearIn(d.years_active[0].start, 1950, 1959)).map(d => d.id));
-			graph.highlight("user2", artists.filter(d => d.name === "Madonna").map(d => d.id));
+			//graph.highlight("user1", artists.filter(d => yearIn(d.years_active[0].start, 1950, 1959)).map(d => d.id));
+			//graph.highlight("user2", artists.filter(d => d.name === "Madonna").map(d => d.id));
 		});
 
 		var fileLoaded = new LiteEvent<void>();
@@ -83,15 +83,35 @@ module fdg {
 		private nodeU: d3.selection.Update<any> = null;
 		private linkU: d3.selection.Update<any> = null;
 		private hisel = {};
+		private svg: d3.Selection<any>;
+		private rootg: d3.Selection<any>;
+		private gravity = 0.03;
+		private charge = -60;
+		private linkDist = 50;
 		
 		public constructor(id: string) {
 			this.id = id;
-			this.createSvg(800, 600);
+			this.createSvg();
 			this.createForce();
 			
 			this.div = d3.select(this.id).append("div")	
 					.attr("class", "tooltip")				
-					.style("opacity", 0);			
+					.style("opacity", 0);
+					
+			$(this.id + " svg").bind('mousewheel', (e:any) => this.zoom(e.originalEvent.wheelDelta));
+		}
+		
+		private zoomLevel: number = 1;
+		public zoom(sign: number) {
+			var step = 1.1;
+			if (sign > 0) this.zoomLevel *= step;
+			else if (sign < 0) this.zoomLevel /= step;
+			
+			this.rootg.attr("transform", `translate(${this.width / 2}, ${this.height / 2}) scale(${this.zoomLevel}, ${this.zoomLevel})`);
+			/*if (this.force) this.force
+				.linkDistance(this.linkDist * this.zoomLevel)
+            	.charge(this.charge * this.zoomLevel)
+				.start();*/
 		}
 		
 		public addNode(artist: any) {
@@ -158,13 +178,19 @@ module fdg {
 			return null;
 		}
 		
-		private createSvg(width: number, height: number) {
-			var svg = d3.select(this.id).append("svg");
-			svg.attr({
-				"width": width, 
-				"height": height
-			});
-			svg.append("rect").attr({
+		private createSvg() {
+			var svg = d3.select(this.id).append("svg")
+				.attr({"width": "100%", 
+				"height": "100%"});
+			this.svg = svg;
+			this.rootg = svg.append("g");
+			this.width = 1;
+			this.height = 1;
+			setTimeout(() => { this.resize(); }, 1000);
+			$(window).resize(() => this.resize());
+			//debugger;
+			//debugger;
+			/*svg.append("rect").attr({
 				"x": 0, 
 				"y": 0, 
 				"width": width, 
@@ -174,19 +200,26 @@ module fdg {
 				"stroke-width": 1});
 				
 			this.width = width;
-			this.height = height;
+			this.height = height;*/
+		}
+		
+		public resize() {
+				this.width = this.svg.property("width").baseVal.value;
+				this.height = this.svg.property("height").baseVal.value;
+				this.zoom(0);
+				//if (this.force) this.force.size([this.width, this.height]).start();
 		}
 		
 		private createForce() {
 			this.force = d3.layout.force()
-            	.size([this.width, this.height])
-            	.linkDistance(50)
-            	.charge(-30)
-            	.gravity(0.03);
+            	.size([1,1]/*[this.width, this.height]*/)
+            	.linkDistance(this.linkDist)
+            	.charge(this.charge)
+            	.gravity(this.gravity);
 		}
 		
 		private syncDom() {
-			var svg = d3.select(this.id).select("svg");
+			var svg = this.rootg;
 			var nodeU = svg.selectAll(".node")
 				.data(this.nodes, d => d.id);
 			var linkU = svg.selectAll(".link")
@@ -273,7 +306,7 @@ module fdg {
 			this.nodeU.attr({
 				/*cx: d => { return d.x = Math.max(r, Math.min(this.width - r, d.x)); },
 				cy: d => { return d.y = Math.max(r, Math.min(this.height - r, d.y)); },*/
-				"transform": d => `translate(${d.x = Math.max(r, Math.min(this.width - r, d.x))}, ${d.y = Math.max(r, Math.min(this.height - r, d.y))})`
+				"transform": d => `translate(${d.x/* = Math.max(r, Math.min(this.width - r, d.x))*/}, ${d.y /*= Math.max(r, Math.min(this.height - r, d.y))*/})`
 			});
 			this.linkU.attr({
 				x1: d => d.source.x,

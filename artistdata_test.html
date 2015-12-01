@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/d3/d3.js"></script>
+	<script src="lib/common.js"></script>
+	<script src="lib/echonest/echonest.js"></script>
+	<script src="lib/artistdata.js"></script>
+	<script>
+		$(function () {
+			initSearchUI();
+			artistdata.init();
+			artistdata.artistsChanged.on(artistsChanged);
+		});
+		
+		function initSearchUI() {
+			$("#search").click(function() {
+				var search = $("#searchbox").val();
+				
+				function renderResults(r) {
+					d3.select("#results").selectAll("option").remove();
+					r.forEach(function(d) {
+						d3.select("#results")
+							.append("option")
+							.attr("value", d.id)
+							.text(d.name)
+							.on("dblclick", function () { addArtist(d.id); });
+					});
+				}
+				
+				artistdata.search(search, renderResults);
+			});
+		}
+		
+		function artistsChanged() {
+			renderArtistNames();
+			renderGenres();
+		}
+		
+		function renderArtistNames() {
+			var data = artistdata.getArtists();
+			data.sort(function(a, b) { return a.name.localeCompare(b.name); });
+			var options = d3.select("#artistnames")
+				.selectAll("option")
+				.data(data, function (d) { return d.id; });
+				
+			options.enter()
+				.append("option")
+				.text(function (d) { return d.name; })
+			
+			options.order();
+			
+			options.exit()
+				.remove();
+		}
+		
+		function renderGenres() {
+			var data = artistdata.getGenres();
+			data.sort();
+			var options = d3.select("#genres")
+				.selectAll("option")
+				.data(data, function (d) { return d; });
+				
+			options.enter()
+				.append("option")
+				.text(function (d) { return capitalizeWords(d); })
+				
+			options.order();
+			
+			options.exit()
+				.remove();
+		}
+		
+		var userList = [];
+
+		function renderUserList() {
+			var options = d3.select("#artistlist")
+				.selectAll("option")
+				.data(userList, function(d) { return d.id; });
+				
+			options.enter()
+				.append("option")
+				.text(function (d) { return d.name; })
+				.on("dblclick", function (d) { removeArtist(d.id); });					
+			options.exit()	
+				.remove();
+		}	
+		
+		function addArtist(id) {
+			for (var i in d3.range(userList.length))
+				if (userList[i].id === id)
+					return;
+					
+			artistdata.fetchArtist(id, function (a) {
+				userList.push(a);
+				artistdata.addArtist(a);
+				renderUserList();
+				updateRecommended();
+			});
+		}
+		
+		function removeArtist(id) {
+			var newList = [];
+			for (var i in d3.range(userList.length))
+				if (userList[i].id !== id)
+					newList.push(userList[i]);
+			userList = newList;
+			artistdata.removeArtist(id);
+			renderUserList();
+			updateRecommended();
+		}
+		
+		function updateRecommended() {
+			var ids = userList.map(function (a) { return a.id; });
+			if (ids.length > 0)
+				echonest.Artist.similar(ids, renderRecommended);
+			else
+				renderRecommended([]);
+			function renderRecommended(data) {
+				var options = d3.select("#recommended")
+					.selectAll("option")
+					.data(data, function(d) { return d.id; });
+					
+				options.enter()
+					.append("option")
+					.text(function (d) { return d.name; })
+				
+				options.exit()	
+					.remove();				
+			} 
+		}
+	</script>
+</head>
+
+<body>
+	<select id="artistnames"></select><br>
+	<select id="genres"></select><br>
+	<input id="searchbox" type="text"></input><button id="search">Search</button><br>
+	<select id="results" multiple style="width: 15em" size="15"></select>
+	<select id="artistlist" multiple style="width: 15em" size="15"></select>
+	<select id="recommended" multiple style="width: 15em" size="15"></select>
+</body>

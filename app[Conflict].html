@@ -84,11 +84,8 @@
             </div>
         </nav>
 
-        <div class="pageContent">
-            <!-- PUT ALL PAGE CODE EITHER IN OR BELOW THIS DIV! OTHERWISE IT WILL FALL BELOW THE NAV BAR! -->
-
-            <script>
-
+        
+		            <script>
                 $(document).ready(function(){
 
                     $('ul.tabs li').click(function(){
@@ -103,7 +100,8 @@
 
                 })
             </script>
-
+			<div class="pageContent">
+            <!-- PUT ALL PAGE CODE EITHER IN OR BELOW THIS DIV! OTHERWISE IT WILL FALL BELOW THE NAV BAR! -->
             <div id="user1panel" class="inline" style="height:90vh; width:17vw;font-size:1vw;">
                 <div id="user1info" style="height:40%;width:100%;overflow:auto;">
                     <div style="width:50%;height:100%;" class="inline">
@@ -461,8 +459,8 @@
                     //fillColor: '#f03',
                     fillOpacity: 1
                     }).addTo(map);
-                    
-                    marker.push(circle);
+
+					marker.push(circle);
                     //circle.setRadius=10000
 
                     var mylocation = "https://en.wikipedia.org/wiki/"+cities[i]
@@ -497,9 +495,7 @@
 
 
                 getJson();
-
-                
-                var points = 103;
+				var points = 103;
                 
                 function add_node(artist){
                     // adding a new artist
@@ -552,7 +548,7 @@
 
                         artistdata.search(search, renderResults);
                     });
-					$("#user2_artist_button_searchartist").click(function() {
+                    $("#user2_artist_button_searchartist").click(function() {
                         var search = $("#user2_artist_textbox_artistsearch").val();
 
                         function renderResults(r) {
@@ -571,7 +567,7 @@
 					}
 
                 var userList = [];
-				var userList2 = [];
+                var userList2 = [];
 
                 function user1_addArtist(id) {
                     for (var i in d3.range(userList.length))
@@ -581,7 +577,8 @@
                     artistdata.fetchArtist(id, function (a) {
                         userList.push(a);
                         artistdata.addArtist(a);
-                        add_node(a)
+
+						add_node(a)
                         function renderUserList() {
                             var options = d3.select("#user1_artistlist")
                                     .selectAll("option")
@@ -607,20 +604,20 @@
                         }
 
                         renderUserList();
-                        user1_updateRecommended();
+                        updateRecommended();
                         fdg.graph.addNode(a);
 
                     });
                 }
-
-				function user2_addArtist(id) {
+                function user2_addArtist(id) {
                     for (var i in d3.range(userList2.length))
                         if (userList2[i].id === id)
                             return;
-				artistdata.fetchArtist(id, function (a) {
+
+                    artistdata.fetchArtist(id, function (a) {
                         userList2.push(a);
                         artistdata.addArtist(a);
-                        add_node(a)
+
                         function renderUserList() {
                             var options = d3.select("#user2_artistlist")
                                     .selectAll("option")
@@ -646,7 +643,7 @@
                         }
 
                         renderUserList();
-                        user2_updateRecommended();
+                        updateRecommended();
                         fdg.graph.addNode(a);
 
                     });
@@ -676,7 +673,8 @@
 
                     options.exit()
                             .remove();
-			var options = d3.select("#user2_selection_artistlist")
+
+                    var options = d3.select("#user2_selection_artistlist")
                             .selectAll("option")
                             .data(data, function (d) {
                                 return d.id;
@@ -730,7 +728,8 @@
 
                     options.exit()
                             .remove();
-			var options = d3.select("#user2_selection_genrelist")
+
+                    var options = d3.select("#user2_selection_genrelist")
                             .selectAll("option")
                             .data(data, function (d) { return d; });
 
@@ -785,10 +784,13 @@
                  list2.appendChild(newartist2);
                  }*/
 
-                function user1_updateRecommended() {
+                function updateRecommended() {
                     var ids = userList.map(function (a) { return a.id; });
+                    var ids2 = userList2.map(function (a) { return a.id; });
                     if (ids.length > 0)
                         echonest.Artist.similar(ids, renderRecommended);
+                    else if (ids2.length > 0)
+                        echonest.Artist.similar(ids2, renderRecommended);
                     else
                         renderRecommended([]);
                     function renderRecommended(data) {
@@ -802,16 +804,7 @@
 
                         options.exit()
                                 .remove();
-                    }
-                }
 
-                function user2_updateRecommended() {
-                    var ids = userList2.map(function (a) { return a.id; });
-                    if (ids.length > 0)
-                        echonest.Artist.similar(ids, renderRecommended);
-                    else
-                        renderRecommended([]);
-                    function renderRecommended(data) {
                         var options = d3.select("#user2_artist_relatedartists")
                                 .selectAll("option")
                                 .data(data, function(d) { return d.id; });
@@ -839,10 +832,10 @@
                     var selected2 = document.getElementById('user1_artistlist');
                     selected2.removeChild(selected2.children[i]);
                     userList.splice(i,1);
-                    user1_updateRecommended();
+                    updateRecommended();
                 }
 
-			function user2_removeartist()
+                function user2_removeartist()
                 {
                     var i;
                     var selected = document.getElementById('user2_artist_artistlist');
@@ -856,10 +849,11 @@
                     var selected2 = document.getElementById('user2_artistlist');
                     selected2.removeChild(selected2.children[i]);
                     userList2.splice(i,1);
-                    user2_updateRecommended();
+                    updateRecommended();
                 }
+
                 var genreList = [];
-				var genreList2 = [];
+                var genreList2 = [];
                 document.getElementById('user1_genre_selection_genre').ondblclick = function()
                 {
                     var selected = document.getElementById('user1_genre_selection_genre');
@@ -890,7 +884,7 @@
 
                 }
 
-		document.getElementById('user2_genre_selection_genre').ondblclick = function()
+                document.getElementById('user2_genre_selection_genre').ondblclick = function()
                 {
                     var selected = document.getElementById('user2_genre_selection_genre');
                     var genre = selected.options[selected.selectedIndex].text;
@@ -919,7 +913,7 @@
                     list2.appendChild(newgenre2);
 
                 }
-				
+
                 function user1_removegenre()
                 {
                     var i;
@@ -936,7 +930,7 @@
                     genreList.splice(i,1);
                 }
 
-				function user2_removegenre()
+                function user2_removegenre()
                 {
                     var i;
                     var selected = document.getElementById('user2_genre_genrelist');
@@ -987,13 +981,14 @@
                         user.push({id:id,bool:bool,artist:artist});
                         getGenre(user[0]);
                         user=[];
-                           for( var i=0;i<names.length;i++){
+					for( var i=0;i<names.length;i++){
                                if(names[i] == artist){
                                   // alert(names[i])
                                    marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'green'})
+                                   marker[i].setStyle({color: 'black'})
                                }
                            }
+                    
                     }
                     else if(!isartist){
                         bool = false;
@@ -1008,15 +1003,16 @@
                         console.log(user[0]);
                         genreUpdate(user[0]);
                         user = [];
-                          for( var i=0;i<genres.length;i++){
+					for( var i=0;i<genres.length;i++){
                                 console.log(genres[i]);
                                 if(genres[i] == genre){
                                    console.log(names[i])
                                    //alert(names[i])
                                    marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'green'})
+                                   marker[i].setStyle({color: 'black'})
                                 }
                             }
+                    
                     }
                     else if(!isgenre){
                         bool = false;
@@ -1033,21 +1029,21 @@
                         user.push({id:id,bool:bool,decade:decade});
                         decadeUpdate(user[0]);
                         user = [];
-                         for( var i=0;i<decades.length;i++){
+						for( var i=0;i<decades.length;i++){
                                 console.log(decades[i]);
                                 if(decades[i] >= decade  && decades[i] <=
                                   (decade+10)){
                                    console.log(names[i])
                                    //alert(names[i])
                                    marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'green'})
+                                   marker[i].setStyle({color: 'black'})
                                 }
                                 if(decades[i] >= (decade -10)  && decades[i] <=
                                   (decade)){
                                    console.log(names[i])
                                    //alert(names[i])
                                    marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'green'})
+                                   marker[i].setStyle({color: 'black'})
                                 }
                                    
                             }
@@ -1064,7 +1060,8 @@
 
 
                 }
-				 function user2_highlight_selections()
+
+                function user2_highlight_selections()
                 {
                     var artist = document.getElementById('user2_selection_artistlist').options[document.getElementById('user2_selection_artistlist').selectedIndex].text;
                     var genre = document.getElementById('user2_selection_genrelist').value;
@@ -1098,13 +1095,6 @@
                         user.push({id:id,bool:bool,artist:artist});
                         getGenre(user[0]);
                         user=[];
-                         for( var i=0;i<names.length;i++){
-                               if(names[i] == artist){
-                                  // alert(names[i])
-                                   marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'red'})
-                               }
-                           }
                     }
                     else if(!isartist){
                         bool = false;
@@ -1119,7 +1109,7 @@
                         console.log(user[0]);
                         genreUpdate(user[0]);
                         user = [];
-                          for( var i=0;i<genres.length;i++){
+					for( var i=0;i<genres.length;i++){
                                 console.log(genres[i]);
                                 if(genres[i] == genre){
                                    console.log(names[i])
@@ -1127,8 +1117,7 @@
                                    marker[i].setRadius(70000);
                                    marker[i].setStyle({color: 'red'})
                                 }
-                            }
-                    }
+                            }                    }
                     else if(!isgenre){
                         bool = false;
                         user.push({id:id,bool:bool,genre:genre});
@@ -1144,7 +1133,7 @@
                         user.push({id:id,bool:bool,decade:decade});
                         decadeUpdate(user[0]);
                         user = [];
-                               for( var i=0;i<decades.length;i++){
+					for( var i=0;i<decades.length;i++){
                                 console.log(decades[i]);
                                 if(decades[i] >= decade  && decades[i] <=
                                   (decade+10)){
@@ -1174,6 +1163,7 @@
                     HLBar(top10Genres,graphs[0].bar);
                 }
             </script>
+
 
 	</body>
 </html>

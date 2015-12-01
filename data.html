@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -37,7 +37,13 @@
 
         <div class="pageContent">
         <!-- PUT ALL PAGE CODE EITHER IN OR BELOW THIS DIV! OTHERWISE IT WILL FALL BELOW THE NAV BAR! -->
+            <div class="workPage">
+                     <p> We got the data from echo nest  which is one of the largest APIs for artist information. We fetched dynamically from echo nest when the user asks to add an new artist to the visualization.</br> We cached the top10 artist for each decade in a file, and we read these in as the page loads. </br> To plot all the artists on a map, we had to use the GEO coordinate API by Google that takes in a location and returns a geo coordinate.  </br>
 
+Initially we wanted to store all the data in a cloud database, but then we realized that it is not necessary since we can store the top 100 artists in a file and then Make one call at a time to echo nest to get on artist.
+    </br>
+    The Echo nest  API allows 20 calls per minutes which allows us to fetch the data dynamically for this app. 
+                </p>
 
         </div>
     </body>

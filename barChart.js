@@ -3,9 +3,9 @@
  */
 var x, y1,y0,xAxis,yAxis,
     graph1,bar1,margin,height,width;
-var artistList = new Array(2);
-var genreList = new Array(2);
-var decadeList = new Array(2);
+var artistList = [];
+var genreList = [];
+var decadeList = [];
 var total = 0;
 
 
@@ -185,30 +185,153 @@ function barInit(top10,graph) {
 
 }
 
-function genreUpdate(userId,newGenre){
+function genreUpdate(user){
+    //console.log(user);
+    var size = genreList.length;
+    //console.log(size);
+    if(size>0){
+        index = -1;
+        i = 0;
+        //var index = genreList.indexOf(user.id);
+        genreList.forEach(function(d){
+            //console.log(user.id);
+          if(d.id==user.id){
+              index = i;
+          }
+            i++;
 
-    if(userId==1){
-        genreList
+        });
+        //console.log(index);
+        //console.log("here\n");
+        if(user.bool==true) {
+            console.log("bool is false\n");
+            if(index>=0) {
+                genreList.splice(index, 1);
+                genreList.push(user);
+                //HLBar(top10Genres,graphs[0].bar);
+            }
 
-    }
-    genreList = newGenreList;
+            if (index == -1) {
+                genreList.push(user);
+                //HLBar(top10Genres,graphs[0].bar);
+            }
+        }
+        else if(user.bool==false){
+            //console.log("in false\n");
+            genreList.splice(index, 1);
+            //HLBar(top10Genres,graphs[0].bar);
+         }
+        }
+    else if(user.bool!=false){
+        genreList.push(user);
+        //HLBar(top10Genres,graphs[0].bar);
+        }
+    console.log(genreList);
+}
+
+function getGenre(user){
+    var genre = artistdata.getArtists().filter(function(a)
+    {
+        if(a.name !== user.artist)
+            return false;
+        return true;
+    }).map(function (a) { return a; });
+    console.log(genre);
+    user.genres = genre[0].genres
+    user.genre = genre[0].genre;
+    user.years = genre[0].years_active;
+    console.log(user);
+
+    artistUpdate(user);
+
 
 }
 
-function artistUpdate(userId,newArtist){
-    artistList = newArtistList;
-    if(artistList!=[]){
+function artistUpdate(user){
+    //console.log(user);
+    var size = artistList.length;
+    //console.log(size);
+    if(size>0){
+        index = -1;
+        i = 0;
+        //var index = genreList.indexOf(user.id);
         artistList.forEach(function(d){
-            d.genres.forEach(function(d){
-              genreList.push(d.genre);
-            })
-        })
+            //console.log(user.id);
+            if(d.id==user.id){
+                index = i;
+            }
+            i++;
+
+        });
+        //console.log(index);
+        //console.log("here\n");
+        if(user.bool==true) {
+            console.log("bool is false\n");
+            if(index>=0) {
+                artistList.splice(index, 1);
+                artistList.push(user);
+                //HLBar(top10Genres,graphs[0].bar);
+            }
+
+            if (index == -1) {
+                artistList.push(user);
+                //HLBar(top10Genres,graphs[0].bar);
+            }
+        }
+        else if(user.bool==false){
+            //console.log("in false\n");
+            artistList.splice(index, 1);
+            //HLBar(top10Genres,graphs[0].bar);
+        }
+    }
+    else if(user.bool!=false){
+        artistList.push(user);
+        //HLBar(top10Genres,graphs[0].bar);
+    }
+    console.log(artistList);
+}
+function decadeUpdate(user){
+    //console.log(user);
+    var size = decadeList.length;
+    //console.log(size);
+    if(size>0){
+        index = -1;
+        i = 0;
+        //var index = genreList.indexOf(user.id);
+        decadeList.forEach(function(d){
+            //console.log(user.id);
+            if(d.id==user.id){
+                index = i;
+            }
+            i++;
+
+        });
+        //console.log(index);
+        //console.log("here\n");
+        if(user.bool==true) {
+            console.log("bool is false\n");
+            if(index>=0) {
+                decadeList.splice(index, 1);
+                decadeList.push(user);
+                //HLBar(top10Genres,graphs[0].bar);
+            }
+
+            if (index == -1) {
+                decadeList.push(user);
+                //HLBar(top10Genres,graphs[0].bar);
+            }
+        }
+        else if(user.bool==false){
+            //console.log("in false\n");
+            decadeList.splice(index, 1);
+            //HLBar(top10Genres,graphs[0].bar);
+        }
+    }
+    else if(user.bool!=false){
+        decadeList.push(user);
+        //HLBar(top10Genres,graphs[0].bar);
     }
 
-
-}
-function decadeUpdate(userId,newDecade){
-    decadeList = newDecadeList;
 }
 
 
@@ -241,16 +364,21 @@ function HLBar(top10,graph){
 
     top10.forEach(function(d){
         d.NORM = (((d.NUMARTIST - (max*1000))*(b-a))/(min - (max*1000)))
-        d.HL =false;
+        d.HL =true;
+        d.shared = false;
     })
 
     if(genreList!=[]){
         genreList.forEach(function(f){
             console.log(f);
             top10.forEach(function(d){
-                console.log(d);
-              if(d.GENRE==f&& d.HL==false)
-                  d.HL = true;
+                //console.log(d);
+                if(d.GENRE== f.genre){
+                    d.shared = true;
+                    d.HL = true;
+                }
+              else if(d.GENRE!= f.genre&& d.HL==true&& d.shared==0)
+                  d.HL = false;
             })
         })
 
@@ -259,13 +387,36 @@ function HLBar(top10,graph){
     if(decadeList!=[]){
         decadeList.forEach(function(f){
             top10.forEach(function(d){
-                if(f== d.START&&d.HL==false){
-                    d.HL=true;
+                if(d.START==f.decade){
+                    d.shared = true;
+                    d.HL = true;
+                }
+                else if(f.decade!= d.START&&d.HL==true&&d.shared==false){
+                    d.HL=false;
                 }
             })
 
         })
 
+
+    }
+
+    if(artistList!=[]){
+        artistList.forEach(function(f) {
+
+            genre = f.genre;
+            top10.forEach(function (d) {
+                if(d.GENRE ==genre){
+                    d.shared = true;
+                    d.HL = true;
+                }
+
+                else if (genre != d.GENRE && d.HL == true&& d.shared==false) {
+                    d.HL = false;
+                }
+            })
+
+        })
 
     }
 

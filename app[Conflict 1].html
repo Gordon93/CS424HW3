@@ -154,12 +154,8 @@
                         </div>
                         <div style="height:100%;width:40%;font-size:.8vw;" class="inline">
                             Name: <input type="text" style="width:50%" id="user1_artist_textbox_artistsearch"><br/>
-                            Genre:
-                            <select id="user1_artist_selection_genre" style="width:50%;overflow:auto;">
-                            <option value=""></option>
-                            </select> <br/>
+                            Genre: <select id="user1_artist_selection_genre" style="width:50%;overflow:auto;"></select> <br/>
                             Decade:<select id="user1_artist_selection_decade" style="width:35%;">
-                            <option value=""></option>
                             <option value="1900">1900's</option>
                             <option value="1910">1910's</option>
                             <option value="1920">1920's</option>
@@ -194,7 +190,6 @@
                         <div style="height:100%;width:60%" class="inline">
                             Name: <input type="textbox" style="width:60%" id="user1_genre_artistsearch"><br/>
                             Decade:<select id="user1_genre_selection_decade" style="width:50%;">
-                            <option value=""></option>
                             <option value="1900">1900's</option>
                             <option value="1910">1910's</option>
                             <option value="1920">1920's</option>
@@ -233,17 +228,17 @@
                 <div id="fdg" class="inline" style="width:50%;height:70%">
                 </div>
             </div>
-
+			
             <div id="user2panel" class="inline" style="height:90vh; width:17vw;font-size:1vw;">
                 <div id="user2info" style="height:40%;width:100%;overflow:auto;">
                     <div style="width:50%;height:100%;" class="inline">
                         <h3 style="font-size:1vw;margin-top:8px;">Artists</h3>
-                        <div id="user2_artistlist" style="width:100%;height:86%;overflow:auto;"></div>
+                            <div id="user2_artistlist" style="width:100%;height:86%;overflow:auto;"></div>
                     </div>
 
                     <div style="width:50%;height:100%;" class="inline">
                         <h3 style="font-size:1vw;margin-top:8px;">Genres</h3>
-                        <div id="user2_genrelist" style="width:100%;height:86%;overflow:auto;"></div>
+                            <div id="user2_genrelist" style="width:100%;height:86%;overflow:auto;"></div>
                     </div>
                 </div>
                 <div id="user2interface" style="height:60%">
@@ -260,7 +255,7 @@
                         <select id="user2_selection_genrelist" style="width:70%;">
                         </select><br/>
                         <input type="checkbox" id="user2_selection_checkbox_decade" value="artist">Decade:
-                        <select id="user2_selection_decadelist" style="width:50%;">
+                        <select id="user2_selection_decadelist" style="width:70%;">
                             <option value="1900">1900's</option>
                             <option value="1910">1910's</option>
                             <option value="1920">1920's</option>
@@ -280,16 +275,12 @@
                         <div class="inline" style="height:100%;width:30%;">
                             <select multiple id="user2_artist_artistlist"  style="height:80%;width:100%;overflow:auto;">
                             </select> <br/>
-                            <button id="user2_artist_button_removeartist" onclick="user2_removeartist()" style="width:5vw;height:4vh;">Remove</button>
+                            <button id="user2_artist_button_removeartist" onclick="user2_removeartist()" style="width:6vw;height:4vh;">Remove</button>
                         </div>
-                        <div style="height:100%;width:40%;font-size:.8vw;" class="inline">
-                            Name: <input type="text" style="width:50%" id="user2_artist_textbox_artistsearch"><br/>
-                            Genre:
-                            <select id="user2_artist_selection_genre" style="width:50%;overflow:auto;">
-                                <option value=""></option>
-                            </select> <br/>
-                            Decade:<select id="user2_artist_selection_decade" style="width:35%;">
-                            <option value=""></option>
+                        <div style="height:100%;width:40%" class="inline">
+                            Name: <input type="text" style="width:60%" id="user2_artist_textbox_artistsearch"><br/>
+                            Genre: <select id="user2_artist_selection_genre" style="width:70%;"></select> <br/>
+                            Decade:<select id="user2_artist_selection_decade" style="width:60%;">
                             <option value="1900">1900's</option>
                             <option value="1910">1910's</option>
                             <option value="1920">1920's</option>
@@ -310,7 +301,7 @@
                         </div>
                         <div class="inline" style="height:100%; width:30%;">
                             Related Artists <br/>
-                            <select multiple id="user2_artist_relatedartists" style="height:80%;width:95%;overflow:auto;">
+                            <select multiple id="user2_artist_relatedartists" style="height:80%;">
                             </select> <br/>
                         </div>
                     </div>
@@ -323,8 +314,7 @@
                         </div>
                         <div style="height:100%;width:60%" class="inline">
                             Name: <input type="textbox" style="width:60%" id="user2_genre_artistsearch"><br/>
-                            Decade:<select id="user2_genre_selection_decade" style="width:50%;">
-                            <option value=""></option>
+                            Decade:<select id="user2_genre_selection_decade" style="width:60%;">
                             <option value="1900">1900's</option>
                             <option value="1910">1910's</option>
                             <option value="1920">1920's</option>
@@ -338,19 +328,19 @@
                             <option value="2000">2000's</option>
                             <option value="2010">2010's</option>
                         </select> <br/>
-                            Sort: <select id="user2_genre_selection_sort" style="width:50%;">
+                            Sort by: <select id="user2_genre_selection_sort" style="width:70%;">
                             <option value="alpha">Alphabetical</option>
                             <option value="hot">Hotness</option>
 
                         </select> <br/>
                             <button id="user2_genre_button_searchgenre" style="width:6vw;height:4vh;">Search</button> <br/>
-                            <select multiple id="user2_genre_selection_genre" style="height:35%;width:95%;overflow:auto;">
+                            <select multiple id="user2_genre_selection_genre" style="height:60%;">
                             </select> <br/>
                             <!--<button id="user2_genre_button_addgenre" style="width:5vw;height:4vh;">Add</button> <br/>-->
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>			
         </div>
             </div>
             </div>
@@ -374,8 +364,8 @@
 
                 var cities =[]
                 var countries = []
-                var decades = []
-                var genres = []
+                var decade = []
+                var genre = []
                 var names = []
                 var marker = new Array();
 
@@ -421,7 +411,7 @@
                                     var myyear = null;
                                 }
 
-                                decades.push(myyear)
+                                decade.push(myyear)
 
                                 if(data[i]["artists"][j]["genres"] != null){
                                     if(data[i]["artists"][j]["genres"][0] != null){
@@ -431,15 +421,15 @@
                                 else{
                                     var mygenre=null;
                                 }
-                                genres.push(mygenre)
+                                genre.push(mygenre)
                             }
                         }
 
                         names = names.slice(0,103)
                         cities = cities.slice(0,103)
-                        decades = decades.slice(0,103)
+                        decade = decade.slice(0,103)
                         countries = countries.slice(0,103)
-                        genres = genres.slice(0,103)
+                        genre = genre.slice(0,103)
 
                         GetResults();
                     });
@@ -453,7 +443,7 @@
                     //alert([lat,lng])
                     //alert(names[i])
                     //var marker = L.marker([lat,lng]).addTo(map);
-                    var mycolor = datautil.genreColor(genres[i])
+                    var mycolor = datautil.genreColor(genre[i])
 
                     var circle = L.circle([lat, lng], 30000
                     ,{
@@ -461,14 +451,13 @@
                     //fillColor: '#f03',
                     fillOpacity: 1
                     }).addTo(map);
-                    
-                    marker.push(circle);
+
                     //circle.setRadius=10000
 
                     var mylocation = "https://en.wikipedia.org/wiki/"+cities[i]
                     var myartist = "https://en.wikipedia.org/wiki/"+names[i]
                     //marker.bindPopup("<a href= '" + mylocation + "' >City</a>");
-                    circle.bindPopup(names[i] + " belonged to " +genres[i]+ " is from " +cities[i]+" and started playing in "+decades[i] );
+                    circle.bindPopup(names[i] + " belonged to " +genre[i]+ " is from " +cities[i]+" and started playing in "+decade[i] );
                     function onMapClick(e) {
                         e.openPopup();
                     }
@@ -491,30 +480,16 @@
                     console.log(countries.length)
                     console.log(JSON.stringify(names))
                     console.log(names.length)
-                    console.log(JSON.stringify(decades))
-                    console.log(decades.length)
+                    console.log(JSON.stringify(decade))
+                    console.log(decade.length)
                 }
 
 
                 getJson();
 
-                
-                var points = 103;
-                
-                function add_node(artist){
+
+                function addNode(){
                     // adding a new artist
-                //cities.push(artist["artist_location"]["city"])
-                cities.push(artist["location"]["city"])
-                //countries.push(artist["artist_location"]["country"])
-                countries.push(artist["location"]["country"])
-                decades.push(artist["years_active"][0]["start"])
-                genres.push(artist["genres"][0]["name"])
-                names.push(artist["name"])
-                
-            $.getJSON("http://maps.google.com/maps/api/geocode/json?                     sensor=false&address="+cities[points], function(json) {
-                        draw(json,points-1);
-                        })
-                    points++;
                 }
 
                 function removeNode(){
@@ -552,26 +527,9 @@
 
                         artistdata.search(search, renderResults);
                     });
-					$("#user2_artist_button_searchartist").click(function() {
-                        var search = $("#user2_artist_textbox_artistsearch").val();
-
-                        function renderResults(r) {
-                            d3.select("#user2_artist_searchresults").selectAll("option").remove();
-                            r.forEach(function(d) {
-                                d3.select("#user2_artist_searchresults")
-                                        .append("option")
-                                        .attr("value", d.id)
-                                        .text(d.name)
-                                        .on("dblclick", function () { user2_addArtist(d.id); });
-                            });
-                        }
-
-                        artistdata.search(search, renderResults);
-                    });
-					}
+                }
 
                 var userList = [];
-				var userList2 = [];
 
                 function user1_addArtist(id) {
                     for (var i in d3.range(userList.length))
@@ -581,7 +539,7 @@
                     artistdata.fetchArtist(id, function (a) {
                         userList.push(a);
                         artistdata.addArtist(a);
-                        add_node(a)
+
                         function renderUserList() {
                             var options = d3.select("#user1_artistlist")
                                     .selectAll("option")
@@ -607,51 +565,12 @@
                         }
 
                         renderUserList();
-                        user1_updateRecommended();
+                        updateRecommended();
                         fdg.graph.addNode(a);
 
                     });
                 }
 
-				function user2_addArtist(id) {
-                    for (var i in d3.range(userList2.length))
-                        if (userList2[i].id === id)
-                            return;
-				artistdata.fetchArtist(id, function (a) {
-                        userList2.push(a);
-                        artistdata.addArtist(a);
-                        add_node(a)
-                        function renderUserList() {
-                            var options = d3.select("#user2_artistlist")
-                                    .selectAll("option")
-                                    .data(userList2, function(d) { return d.id; });
-
-                            options.enter()
-                                    .append("option")
-                                    .text(function (d) { return d.name; })
-
-                            options.exit()
-                                    .remove();
-
-                            var options2 = d3.select("#user2_artist_artistlist")
-                                    .selectAll("option")
-                                    .data(userList2, function(d) { return d.id; });
-
-                            options2.enter()
-                                    .append("option")
-                                    .text(function (d) { return d.name; })
-
-                            options2.exit()
-                                    .remove();
-                        }
-
-                        renderUserList();
-                        user2_updateRecommended();
-                        fdg.graph.addNode(a);
-
-                    });
-                }
-				
                 function artistsChanged() {
                     renderArtistNames();
                     renderGenres();
@@ -663,20 +582,6 @@
                         return a.name.localeCompare(b.name);
                     });
                     var options = d3.select("#user1_selection_artistlist")
-                            .selectAll("option")
-                            .data(data, function (d) {
-                                return d.id;
-                            });
-
-                    options.enter()
-                            .append("option")
-                            .text(function (d) {
-                                return d.name;
-                            });
-
-                    options.exit()
-                            .remove();
-			var options = d3.select("#user2_selection_artistlist")
                             .selectAll("option")
                             .data(data, function (d) {
                                 return d.id;
@@ -730,40 +635,6 @@
 
                     options.exit()
                             .remove();
-			var options = d3.select("#user2_selection_genrelist")
-                            .selectAll("option")
-                            .data(data, function (d) { return d; });
-
-                    options.enter()
-                            .append("option")
-                            .property("value", function (d) { return d; })
-                            .text(function (d) { return capitalizeWords(d); });
-
-                    options.exit()
-                            .remove();
-
-
-                    var options = d3.select("#user2_artist_selection_genre")
-                            .selectAll("option")
-                            .data(data, function (d) { return d; });
-
-                    options.enter()
-                            .append("option")
-                            .text(function (d) { return capitalizeWords(d); });
-
-                    options.exit()
-                            .remove();
-
-                    var options = d3.select("#user2_genre_selection_genre")
-                            .selectAll("option")
-                            .data(data, function (d) { return d; });
-
-                    options.enter()
-                            .append("option")
-                            .text(function (d) { return capitalizeWords(d); });
-
-                    options.exit()
-                            .remove();
                 }
             </script>
 
@@ -785,7 +656,7 @@
                  list2.appendChild(newartist2);
                  }*/
 
-                function user1_updateRecommended() {
+                function updateRecommended() {
                     var ids = userList.map(function (a) { return a.id; });
                     if (ids.length > 0)
                         echonest.Artist.similar(ids, renderRecommended);
@@ -793,26 +664,6 @@
                         renderRecommended([]);
                     function renderRecommended(data) {
                         var options = d3.select("#user1_artist_relatedartists")
-                                .selectAll("option")
-                                .data(data, function(d) { return d.id; });
-
-                        options.enter()
-                                .append("option")
-                                .text(function (d) { return d.name; })
-
-                        options.exit()
-                                .remove();
-                    }
-                }
-
-                function user2_updateRecommended() {
-                    var ids = userList2.map(function (a) { return a.id; });
-                    if (ids.length > 0)
-                        echonest.Artist.similar(ids, renderRecommended);
-                    else
-                        renderRecommended([]);
-                    function renderRecommended(data) {
-                        var options = d3.select("#user2_artist_relatedartists")
                                 .selectAll("option")
                                 .data(data, function(d) { return d.id; });
 
@@ -839,27 +690,10 @@
                     var selected2 = document.getElementById('user1_artistlist');
                     selected2.removeChild(selected2.children[i]);
                     userList.splice(i,1);
-                    user1_updateRecommended();
+                    updateRecommended();
                 }
 
-			function user2_removeartist()
-                {
-                    var i;
-                    var selected = document.getElementById('user2_artist_artistlist');
-                    var artist = selected.options[selected.selectedIndex].text;
-                    for(i=0;;i++)
-                    {
-                        if(selected.options[i].text == artist)
-                            break;
-                    }
-                    selected.removeChild(selected.options[i]);
-                    var selected2 = document.getElementById('user2_artistlist');
-                    selected2.removeChild(selected2.children[i]);
-                    userList2.splice(i,1);
-                    user2_updateRecommended();
-                }
                 var genreList = [];
-				var genreList2 = [];
                 document.getElementById('user1_genre_selection_genre').ondblclick = function()
                 {
                     var selected = document.getElementById('user1_genre_selection_genre');
@@ -890,36 +724,6 @@
 
                 }
 
-		document.getElementById('user2_genre_selection_genre').ondblclick = function()
-                {
-                    var selected = document.getElementById('user2_genre_selection_genre');
-                    var genre = selected.options[selected.selectedIndex].text;
-                    var list1 = document.getElementById('user2_genre_genrelist');
-
-                    var i;
-
-                    for(i=0;;i++)
-                    {
-                        if(list1.options[i] == undefined)
-                            break;
-                        if(list1.options[i].text == genre)
-                        {
-                            return;
-                        }
-                    }
-
-                    genreList2.push(genre);
-                    var newgenre = document.createElement('option');
-                    newgenre.text = genre;
-                    //alert(newartist.text);
-                    list1.appendChild(newgenre);
-                    var newgenre2 = document.createElement('option');
-                    newgenre2.text = genre;
-                    var list2 = document.getElementById('user2_genrelist');
-                    list2.appendChild(newgenre2);
-
-                }
-				
                 function user1_removegenre()
                 {
                     var i;
@@ -934,22 +738,6 @@
                     var selected2 = document.getElementById('user1_genrelist');
                     selected2.removeChild(selected2.children[i]);
                     genreList.splice(i,1);
-                }
-
-				function user2_removegenre()
-                {
-                    var i;
-                    var selected = document.getElementById('user2_genre_genrelist');
-                    var genre = selected.options[selected.selectedIndex].text;
-                    for(i=0;;i++)
-                    {
-                        if(selected.options[i].text == genre)
-                            break;
-                    }
-                    selected.removeChild(selected.options[i]);
-                    var selected2 = document.getElementById('user2_genrelist');
-                    selected2.removeChild(selected2.children[i]);
-                    genreList2.splice(i,1);
                 }
 
 
@@ -979,199 +767,57 @@
                     }).map(function (a) { return a.id; });
                     fdg.graph.highlight("user1",id);
 
-                    var user = [];
-                    var id = 1;
-                    var bool = false;
-                    if(isartist) {
-                        bool = true;
-                        user.push({id:id,bool:bool,artist:artist});
-                        getGenre(user[0]);
-                        user=[];
-                           for( var i=0;i<names.length;i++){
-                               if(names[i] == artist){
-                                  // alert(names[i])
-                                   marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'green'})
-                               }
-                           }
-                    }
-                    else if(!isartist){
-                        bool = false;
-                        user.push({id:id,bool:bool,artist:artist});
-                        getGenre(user[0]);
-                        user = [];
-                    }
+                       var user = [];
+                       var id = 1;
+                       var bool = false;
+                       if(isartist) {
+                           bool = true;
+                           user.push(id,bool,artist);
+                           user = [];
+                           //artistUpdate(user);
+                       }
+                       else if(!isartist){
+                           bool = false;
+                           user.push(id,bool,artist);
+                           user = [];
+                           //artistUpdate(user);
+                       }
 
-                    if(isgenre) {
-                        bool = true;
-                        user.push({id:id,bool:bool,genre:genre});
-                        console.log(user[0]);
-                        genreUpdate(user[0]);
-                        user = [];
-                          for( var i=0;i<genres.length;i++){
-                                console.log(genres[i]);
-                                if(genres[i] == genre){
-                                   console.log(names[i])
-                                   //alert(names[i])
-                                   marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'green'})
-                                }
-                            }
-                    }
-                    else if(!isgenre){
-                        bool = false;
-                        user.push({id:id,bool:bool,genre:genre});
-                        console.log(user[0]);
-                        genreUpdate(user[0]);
-                        user = [];
+                        if(isgenre) {
+                            bool = true;
+                            user.push(id,bool,genre);
+                            console.log(user);
+                            user =[];
+                            //genreUpdate(user);
+                        }
+                       else if(!isgenre){
+                            bool = false;
+                            user.push(id,bool,genre);
+                            user = [];
+                            //genreUpdate(user);
 
-                    }
-                    console.log(isdecade);
-                    if(isdecade==true) {
-                        bool = true;
-                        decade = +decade;
-                        user.push({id:id,bool:bool,decade:decade});
-                        decadeUpdate(user[0]);
-                        user = [];
-                         for( var i=0;i<decades.length;i++){
-                                console.log(decades[i]);
-                                if(decades[i] >= decade  && decades[i] <=
-                                  (decade+10)){
-                                   console.log(names[i])
-                                   //alert(names[i])
-                                   marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'green'})
-                                }
-                                if(decades[i] >= (decade -10)  && decades[i] <=
-                                  (decade)){
-                                   console.log(names[i])
-                                   //alert(names[i])
-                                   marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'green'})
-                                }
-                                   
-                            }
-                    }
-                    else if(isdecade==false){
-                        bool = false;
-                        decade = +decade;
-                        user.push({id:id,bool:bool,decade:decade});
-                        decadeUpdate(user[0])
-                        user = [];
-                    }
+                        }
 
-                    HLBar(top10Genres,graphs[0].bar);
+                        if(isdecade) {
+                            bool = true;
+                            user.push(id,bool,decade);
+                            user =[];
+                            //decadeUpdate(user);
+                        }
+                       else if(!isdecade){
+                            bool = false;
+                            user.push(id,bool,decade);
+                            user = [];
+                            //decadeUpdate(user)
+                        }
 
 
-                }
-				 function user2_highlight_selections()
-                {
-                    var artist = document.getElementById('user2_selection_artistlist').options[document.getElementById('user2_selection_artistlist').selectedIndex].text;
-                    var genre = document.getElementById('user2_selection_genrelist').value;
-                    var decade = document.getElementById('user2_selection_decadelist').value;
-                    var isartist= document.getElementById('user2_selection_checkbox_artist').checked;
-                    var isgenre= document.getElementById('user2_selection_checkbox_genre').checked;
-                    var isdecade= document.getElementById('user2_selection_checkbox_decade').checked;
 
-                    var id = artistdata.getArtists().filter(function(a)
-                    {
-//                        debugger;
-                        if(isartist)
-                            if(a.name !== artist)
-                                return false;
-                        if(isgenre)
-                            if(a.genre !== genre)
-                                return false;
-                        if(isdecade)
-                            if(a.year-(a.year%10) !== +decade)
-                                return false;
 
-                        return true;
-                    }).map(function (a) { return a.id; });
-                    fdg.graph.highlight("user2",id);
 
-                    var user = [];
-                    var id = 2;
-                    var bool = false;
-                    if(isartist) {
-                        bool = true;
-                        user.push({id:id,bool:bool,artist:artist});
-                        getGenre(user[0]);
-                        user=[];
-                         for( var i=0;i<names.length;i++){
-                               if(names[i] == artist){
-                                  // alert(names[i])
-                                   marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'red'})
-                               }
-                           }
-                    }
-                    else if(!isartist){
-                        bool = false;
-                        user.push({id:id,bool:bool,artist:artist});
-                        getGenre(user[0]);
-                        user = [];
-                    }
 
-                    if(isgenre) {
-                        bool = true;
-                        user.push({id:id,bool:bool,genre:genre});
-                        console.log(user[0]);
-                        genreUpdate(user[0]);
-                        user = [];
-                          for( var i=0;i<genres.length;i++){
-                                console.log(genres[i]);
-                                if(genres[i] == genre){
-                                   console.log(names[i])
-                                   //alert(names[i])
-                                   marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'red'})
-                                }
-                            }
-                    }
-                    else if(!isgenre){
-                        bool = false;
-                        user.push({id:id,bool:bool,genre:genre});
-                        console.log(user[0]);
-                        genreUpdate(user[0]);
-                        user = [];
 
-                    }
-                    console.log(isdecade);
-                    if(isdecade==true) {
-                        bool = true;
-                        decade = +decade;
-                        user.push({id:id,bool:bool,decade:decade});
-                        decadeUpdate(user[0]);
-                        user = [];
-                               for( var i=0;i<decades.length;i++){
-                                console.log(decades[i]);
-                                if(decades[i] >= decade  && decades[i] <=
-                                  (decade+10)){
-                                   console.log(names[i])
-                                   //alert(names[i])
-                                   marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'red'})
-                                }
-                                if(decades[i] >= (decade -10)  && decades[i] <=
-                                  (decade)){
-                                   console.log(names[i])
-                                   //alert(names[i])
-                                   marker[i].setRadius(70000);
-                                   marker[i].setStyle({color: 'red'})
-                                }
-                                   
-                            }
-                    }
-                    else if(isdecade==false){
-                        bool = false;
-                        decade = +decade;
-                        user.push({id:id,bool:bool,decade:decade});
-                        decadeUpdate(user[0])
-                        user = [];
-                    }
 
-                    HLBar(top10Genres,graphs[0].bar);
                 }
             </script>
 
