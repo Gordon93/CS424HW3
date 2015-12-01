@@ -105,7 +105,7 @@
             </script>
 
             <div id="user1panel" class="inline" style="height:90vh; width:17vw;font-size:1vw;">
-                <div id="user1info" style="height:40%;width:100%;overflow:auto;">
+                <div id="user1info" style="height:40%;width:100%;">
                     <div style="width:50%;height:100%;" class="inline">
                         <h3 style="font-size:1vw;margin-top:8px;">Artists</h3>
                             <div id="user1_artistlist" style="width:100%;height:86%;overflow:auto;"></div>
@@ -235,7 +235,7 @@
             </div>
 
             <div id="user2panel" class="inline" style="height:90vh; width:17vw;font-size:1vw;">
-                <div id="user2info" style="height:40%;width:100%;overflow:auto;">
+                <div id="user2info" style="height:40%;width:100%;">
                     <div style="width:50%;height:100%;" class="inline">
                         <h3 style="font-size:1vw;margin-top:8px;">Artists</h3>
                         <div id="user2_artistlist" style="width:100%;height:86%;overflow:auto;"></div>
@@ -581,6 +581,11 @@
                     artistdata.fetchArtist(id, function (a) {
                         userList.push(a);
                         artistdata.addArtist(a);
+
+
+                        renderUserList();
+                        user1_updateRecommended();
+
                         add_node(a)
                         function renderUserList() {
                             var options = d3.select("#user1_artistlist")
@@ -605,9 +610,6 @@
                             options2.exit()
                                     .remove();
                         }
-
-                        renderUserList();
-                        user1_updateRecommended();
                         fdg.graph.addNode(a);
 
                     });
@@ -620,33 +622,35 @@
 				artistdata.fetchArtist(id, function (a) {
                         userList2.push(a);
                         artistdata.addArtist(a);
-                        add_node(a)
-                        function renderUserList() {
-                            var options = d3.select("#user2_artistlist")
-                                    .selectAll("option")
-                                    .data(userList2, function(d) { return d.id; });
 
-                            options.enter()
-                                    .append("option")
-                                    .text(function (d) { return d.name; })
-
-                            options.exit()
-                                    .remove();
-
-                            var options2 = d3.select("#user2_artist_artistlist")
-                                    .selectAll("option")
-                                    .data(userList2, function(d) { return d.id; });
-
-                            options2.enter()
-                                    .append("option")
-                                    .text(function (d) { return d.name; })
-
-                            options2.exit()
-                                    .remove();
-                        }
 
                         renderUserList();
                         user2_updateRecommended();
+
+                    add_node(a)
+                    function renderUserList() {
+                        var options = d3.select("#user2_artistlist")
+                                .selectAll("option")
+                                .data(userList2, function(d) { return d.id; });
+
+                        options.enter()
+                                .append("option")
+                                .text(function (d) { return d.name; })
+
+                        options.exit()
+                                .remove();
+
+                        var options2 = d3.select("#user2_artist_artistlist")
+                                .selectAll("option")
+                                .data(userList2, function(d) { return d.id; });
+
+                        options2.enter()
+                                .append("option")
+                                .text(function (d) { return d.name; })
+
+                        options2.exit()
+                                .remove();
+                    }
                         fdg.graph.addNode(a);
 
                     });
